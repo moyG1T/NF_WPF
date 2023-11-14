@@ -6,6 +6,7 @@
     <Application.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontFamily" Value="Open Sans Bold MS"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
         </Style>
         <Style TargetType="Button">
@@ -26,6 +27,16 @@
             <Setter Property="Padding" Value="5,0,5,0"></Setter>
         </Style>
         <Style TargetType="TextBox">
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="Width" Value="200"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Padding" Value="5,0,5,0"></Setter>
+        </Style>
+        <Style TargetType="DatePicker">
             <Setter Property="Height" Value="40"></Setter>
             <Setter Property="Width" Value="200"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>

@@ -66,8 +66,8 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,10,0,10" Orientation="Vertical">
             <TextBlock>Элемент</TextBlock>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="AddElementButton">Добавить</Button>
-                <Button x:Name="EditElementButton">Редактировать</Button>
+                <Button x:Name="AddElementButton" Click="AddElementButton_Click">Добавить</Button>
+                <Button x:Name="EditElementButton" Click="EditElementButton_Click">Редактировать</Button>
                 <Button x:Name="RemoveElementButton">Удалить</Button>
             </StackPanel>
         </StackPanel>

@@ -26,6 +26,13 @@
             </Rectangle.Fill>
         </Rectangle>
         <TextBlock x:Name="TitleText" Grid.Column="1" FontSize="36" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center">???</TextBlock>
-        <Frame x:Name="MainWindowFrame" Grid.ColumnSpan="3" Grid.Row="1"></Frame>
+        <TextBlock x:Name="ModeText" Grid.Column="1" FontSize="18" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom">Режим модератора активен</TextBlock>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="QuitAsAdminButton" Click="QuitAsAdminButton_Click">Выйти</Button>
+            <Button x:Name="PopButton" Click="PopButton_Click">Назад</Button>
+        </StackPanel>
+        
+        <Frame x:Name="MainWindowFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="3" Grid.Row="1"></Frame>
     </Grid>
 </Window>

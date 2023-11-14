@@ -16,7 +16,7 @@ namespace NF_WPF
     {
         //public static NF_WPF_Entities db = new NF_WPF_Entities();
         public static NF_WPF_HOME_Entities db = new NF_WPF_HOME_Entities();
-        public static bool isAdmin = false;
+        public static bool isAdmin = true;
         public static MainWindow mainWindow;
     }
 }

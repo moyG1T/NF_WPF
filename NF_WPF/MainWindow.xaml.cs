@@ -26,7 +26,18 @@ namespace NF_WPF
         {
             InitializeComponent();
             App.mainWindow = this;
-            AppNav.Navigate(new PageComps("Главная", new ExamList()));
+            AppNav.Navigate(new PageComps("Главная", new MainMenu()));
+        }
+
+        private void PopButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.NavigateAndPop();
+        }
+
+        private void QuitAsAdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.DropHistory();
+            AppNav.Navigate(new PageComps("Главная", new MainMenu()));
         }
     }
 }

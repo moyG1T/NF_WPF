@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NF_WPF.Data;
+using NF_WPF.NavHost;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -135,6 +137,16 @@ namespace NF_WPF.Pages
         {
             SearchbarText.Text = "";
             RefreshFilters();
+        }
+
+        private void EditElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Редактирование", new EditExam(ExamListView.SelectedItem as Exam)));
+        }
+
+        private void AddElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Добавление", new EditExam(new Exam())));
         }
     }
 }
