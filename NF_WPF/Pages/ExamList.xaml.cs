@@ -20,10 +20,100 @@ namespace NF_WPF.Pages
     /// </summary>
     public partial class ExamList : Page
     {
+        bool isInverted = false;
         public ExamList()
         {
             InitializeComponent();
+            SortByComboBox.SelectedIndex = 0;
             ExamListView.ItemsSource = App.db.Exam.ToList();
+            RefreshFilters();
+        }
+
+        private void RefreshFilters()
+        {
+            if (isInverted == false)
+            {
+                if (SortByComboBox.SelectedIndex == 0)
+                    ExamListView.ItemsSource = App.db.Exam.ToList();
+                else if (SortByComboBox.SelectedIndex == 1)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_disc).ToList();
+                else if (SortByComboBox.SelectedIndex == 2)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_emp).ToList();
+                else if (SortByComboBox.SelectedIndex == 3)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_stud).ToList();
+                else if (SortByComboBox.SelectedIndex == 4)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.EDate).ToList();
+                else if (SortByComboBox.SelectedIndex == 5)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Auditory).ToList();
+                else if (SortByComboBox.SelectedIndex == 6)
+                    ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Points).ToList();
+
+                SearchText();
+            }
+            else if (isInverted == true)
+            {
+                if (SortByComboBox.SelectedIndex == 0)
+                    ExamListView.ItemsSource = App.db.Exam.ToList();
+                else if (SortByComboBox.SelectedIndex == 1)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_disc).ToList();
+                else if (SortByComboBox.SelectedIndex == 2)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_emp).ToList();
+                else if (SortByComboBox.SelectedIndex == 3)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_stud).ToList();
+                else if (SortByComboBox.SelectedIndex == 4)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.EDate).ToList();
+                else if (SortByComboBox.SelectedIndex == 5)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Auditory).ToList();
+                else if (SortByComboBox.SelectedIndex == 6)
+                    ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Points).ToList();
+
+                SearchText();
+            }
+
+        }
+
+        private void SearchText()
+        {
+            if (SearchbarText.Text != "")
+                ExamListView.ItemsSource = App.db.Exam.Where(x =>
+                x.Discipline.DName.ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.Employee.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.Student.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.Auditory.ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.Points.ToString().ToLower().Contains(SearchbarText.Text.ToLower())
+                ).ToList();
+            else if (SearchbarText.Text == "")
+                ExamListView.ItemsSource = App.db.Exam.ToList();
+        }
+
+        private void SortByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshFilters();
+        }
+
+        private void SearchbarText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshFilters();
+        }
+
+        private void InvertSortByButton_Click(object sender, RoutedEventArgs e)
+        {
+            isInverted = !isInverted;
+            RefreshFilters();
+        }
+
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            isInverted = false;
+            SortByComboBox.SelectedIndex = 0;
+            SearchbarText.Text = "";
+            RefreshFilters();
+        }
+
+        private void ClearSearchbarButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchbarText.Text = "";
+            RefreshFilters();
         }
     }
 }

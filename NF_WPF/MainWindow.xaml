@@ -20,7 +20,7 @@
         <Rectangle  Grid.ColumnSpan="3" Grid.Row="0">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                    <GradientStop Color="#FFFF9800" Offset="1"/>
+                    <GradientStop Color="#FFFF8000" Offset="1"/>
                     <GradientStop Color="White" Offset="0"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>

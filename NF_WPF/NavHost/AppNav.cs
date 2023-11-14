@@ -13,6 +13,7 @@ namespace NF_WPF.NavHost
         private static void Refresh(PageComps page)
         {
             App.mainWindow.MainWindowFrame.Navigate(page.Page);
+            App.mainWindow.TitleText.Text = page.Title;
         }
 
         public static void Navigate(PageComps page)

@@ -24,7 +24,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock>Сортировать</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox x:Name="SortByComboBox">
+                    <ComboBox x:Name="SortByComboBox" SelectionChanged="SortByComboBox_SelectionChanged">
                         <ComboBoxItem>По умолчанию</ComboBoxItem>
                         <ComboBoxItem>По преподавателю</ComboBoxItem>
                         <ComboBoxItem>По студенту</ComboBoxItem>
@@ -32,18 +32,18 @@
                         <ComboBoxItem>По аудитории</ComboBoxItem>
                         <ComboBoxItem>По оценке</ComboBoxItem>
                     </ComboBox>
-                    <Button x:Name="InvertSortByButton" Background="#FFFF9800" Foreground="White">⇅</Button>
+                    <Button x:Name="InvertSortByButton" Background="#FFFF8000" Foreground="White" Click="InvertSortByButton_Click">⇅</Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <TextBlock>Поиск</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="SearchbarText"></TextBox>
-                    <Button x:Name="ClearSearchbarButton" Background="#FFFF9800" Foreground="White">❌</Button>
+                    <TextBox x:Name="SearchbarText" TextChanged="SearchbarText_TextChanged"></TextBox>
+                    <Button x:Name="ClearSearchbarButton" Background="#FFFF8000" Foreground="White" Click="ClearSearchbarButton_Click">❌</Button>
                 </StackPanel>
             </StackPanel>
-            <Button Background="#FFFF9800" Foreground="White" Height="Auto">
-                <TextBlock x:Name="ClearFiltersButton" TextAlignment="Center">Сбросить <LineBreak/> фильтры</TextBlock>
+            <Button x:Name="ClearFiltersButton" Background="#FFFF8000" Foreground="White" Height="Auto" Click="ClearFiltersButton_Click">
+                <TextBlock TextAlignment="Center">Сбросить <LineBreak/> фильтры</TextBlock>
             </Button>
         </StackPanel>
 
