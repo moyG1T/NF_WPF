@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NF_WPF.Data;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace NF_WPF
     /// </summary>
     public partial class App : Application
     {
+        NF_WPF_Entities db = new NF_WPF_Entities();
+        bool isAdmin = false;
     }
 }
