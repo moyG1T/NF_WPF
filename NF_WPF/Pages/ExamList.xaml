@@ -1,0 +1,27 @@
+﻿<Page x:Class="NF_WPF.Pages.ExamList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NF_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="840" d:DesignWidth="1280"
+      Title="ExamList">
+
+    <Grid>
+        <ListView x:Name="ExamListView">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Discipline.DName}">Дисциплина</GridViewColumn>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Employee.Surname}">Преподаватель</GridViewColumn>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Student.Surname}">Студент</GridViewColumn>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding EDate}">Дата</GridViewColumn>
+                        <GridViewColumn Width="125" DisplayMemberBinding="{Binding Auditory}">Аудитория</GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Points}">Оценка</GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
