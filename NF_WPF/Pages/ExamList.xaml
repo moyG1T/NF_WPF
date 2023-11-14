@@ -26,6 +26,7 @@
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="SortByComboBox" SelectionChanged="SortByComboBox_SelectionChanged">
                         <ComboBoxItem>По умолчанию</ComboBoxItem>
+                        <ComboBoxItem>По дисциплине</ComboBoxItem>
                         <ComboBoxItem>По преподавателю</ComboBoxItem>
                         <ComboBoxItem>По студенту</ComboBoxItem>
                         <ComboBoxItem>По дате</ComboBoxItem>
