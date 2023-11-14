@@ -9,7 +9,45 @@
       Title="ExamList">
 
     <Grid>
-        <ListView x:Name="ExamListView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <TextBlock>Сортировать</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="SortByComboBox">
+                        <ComboBoxItem>По умолчанию</ComboBoxItem>
+                        <ComboBoxItem>По преподавателю</ComboBoxItem>
+                        <ComboBoxItem>По студенту</ComboBoxItem>
+                        <ComboBoxItem>По дате</ComboBoxItem>
+                        <ComboBoxItem>По аудитории</ComboBoxItem>
+                        <ComboBoxItem>По оценке</ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="InvertSortByButton" Background="#FFFF9800" Foreground="White">⇅</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock>Поиск</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="SearchbarText"></TextBox>
+                    <Button x:Name="ClearSearchbarButton" Background="#FFFF9800" Foreground="White">❌</Button>
+                </StackPanel>
+            </StackPanel>
+            <Button Background="#FFFF9800" Foreground="White" Height="Auto">
+                <TextBlock x:Name="ClearFiltersButton" TextAlignment="Center">Сбросить <LineBreak/> фильтры</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <ListView x:Name="ExamListView" Grid.ColumnSpan="3" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -23,5 +61,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,10,0,10" Orientation="Vertical">
+            <TextBlock>Элемент</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddElementButton">Добавить</Button>
+                <Button x:Name="EditElementButton">Редактировать</Button>
+                <Button x:Name="RemoveElementButton">Удалить</Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

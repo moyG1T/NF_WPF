@@ -26,7 +26,7 @@ namespace NF_WPF
         {
             InitializeComponent();
             App.mainWindow = this;
-            AppNav.Navigate(new PageComps("", new ExamList()));
+            AppNav.Navigate(new PageComps("Главная", new ExamList()));
         }
     }
 }

@@ -11,13 +11,21 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
+        <Rectangle  Grid.ColumnSpan="3" Grid.Row="0">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#FFFF9800" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock x:Name="TitleText" Grid.Column="1" FontSize="36" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center">???</TextBlock>
         <Frame x:Name="MainWindowFrame" Grid.ColumnSpan="3" Grid.Row="1"></Frame>
     </Grid>
 </Window>
