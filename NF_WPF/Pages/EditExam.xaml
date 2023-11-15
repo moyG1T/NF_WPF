@@ -13,7 +13,7 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Left">Дисциплина</TextBlock>
-                    <TextBox x:Name ="DisciplineText" Text="{Binding Path = Discipline.DName}" HorizontalAlignment="Left"></TextBox>
+                    <ComboBox x:Name ="DisciplineComboBox" HorizontalAlignment="Left"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock>Преподаватель</TextBlock>

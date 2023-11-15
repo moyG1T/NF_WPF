@@ -156,6 +156,8 @@
     <Compile Include="Pages\StudentList.xaml.cs">
       <DependentUpon>StudentList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartialClasses\Discipline.cs" />
+    <Compile Include="PartialClasses\Exam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

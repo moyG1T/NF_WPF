@@ -25,8 +25,12 @@ namespace NF_WPF.Pages
         public EditExam(Exam exam)
         {
             InitializeComponent();
+
             this.exam = exam;
             DataContext = this.exam;
+
+            DisciplineComboBox.ItemsSource = App.db.Discipline.Distinct().ToList();
+            DisciplineComboBox.DisplayMemberPath = "DName";
         }
     }
 }
