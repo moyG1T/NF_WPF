@@ -1,0 +1,67 @@
+﻿<Page x:Class="NF_WPF.Pages.StudentList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NF_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="840" d:DesignWidth="1280"
+      Title="StudentList">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <TextBlock>Сортировать</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="SortByComboBox" SelectionChanged="SortByComboBox_SelectionChanged">
+                        <ComboBoxItem>По умолчанию</ComboBoxItem>
+                        <ComboBoxItem>По фамилии</ComboBoxItem>
+                        <ComboBoxItem>По специальности</ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="InvertSortByButton" Background="#FFFF8000" Foreground="White" Click="InvertSortByButton_Click" >⇅</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock>Поиск</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="SearchbarText" TextChanged="SearchbarText_TextChanged"></TextBox>
+                    <Button x:Name="ClearSearchbarButton" Background="#FFFF8000" Foreground="White" Click="ClearSearchbarButton_Click">❌</Button>
+                </StackPanel>
+            </StackPanel>
+            <Button x:Name="ClearFiltersButton" Background="#FFFF8000" Foreground="White" Height="Auto" Click="ClearFiltersButton_Click">
+                <TextBlock TextAlignment="Center">Сбросить <LineBreak/> фильтры</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <ListView x:Name="ExamListView" Grid.ColumnSpan="3" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Surname}">Студент</GridViewColumn>
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Speciality.SName}">Специальность</GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,10,0,10" Orientation="Vertical">
+            <TextBlock>Элемент</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="GetElementInfoButton">Узнать больше</Button>
+                <Button x:Name="AddElementButton">Добавить</Button>
+                <Button x:Name="EditElementButton">Редактировать</Button>
+                <Button x:Name="RemoveElementButton">Удалить</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

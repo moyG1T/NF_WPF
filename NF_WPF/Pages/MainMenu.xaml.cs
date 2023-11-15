@@ -28,7 +28,12 @@ namespace NF_WPF.Pages
 
         private void NavigateToExamsButton_Click(object sender, RoutedEventArgs e)
         {
-            AppNav.Navigate(new PageComps("Главная", new ExamList()));
+            AppNav.Navigate(new PageComps("Экзамены", new ExamList()));
+        }
+
+        private void NavigateToStudentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Студенты", new StudentList()));
         }
     }
 }

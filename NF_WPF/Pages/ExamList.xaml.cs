@@ -32,81 +32,67 @@ namespace NF_WPF.Pages
 
         private void RefreshFilters()
         {
-            if (isInverted == false)
-            {
+            IEnumerable<Exam> list = App.db.Exam.ToList();
+
+            if (isInverted == false && SortByComboBox.SelectedIndex != 0)
                 switch (SortByComboBox.SelectedIndex)
                 {
-                    case 0:
-                        ExamListView.ItemsSource = App.db.Exam.ToList();
-                        break;
                     case 1:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_disc).ToList();
+                        list = list.OrderBy(x => x.Discipline.DName).ToList();
                         break;
                     case 2:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_emp).ToList();
+                        list = list.OrderBy(x => x.Employee.Surname).ToList();
                         break;
                     case 3:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Id_stud).ToList();
+                        list = list.OrderBy(x => x.Student.Surname).ToList();
                         break;
                     case 4:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.EDate).ToList();
+                        list = list.OrderBy(x => x.EDate).ToList();
                         break;
                     case 5:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Auditory).ToList();
+                        list = list.OrderBy(x => x.Auditory).ToList();
                         break;
                     case 6:
-                        ExamListView.ItemsSource = App.db.Exam.OrderBy(x => x.Points).ToList();
+                        list = list.OrderBy(x => x.Points).ToList();
+                        break;
+                }
+            else if (isInverted == true && SortByComboBox.SelectedIndex != 0)
+                switch (SortByComboBox.SelectedIndex)
+                {
+                    case 1:
+                        list = list.OrderByDescending(x => x.Discipline.DName).ToList();
+                        break;
+                    case 2:
+                        list = list.OrderByDescending(x => x.Employee.Surname).ToList();
+                        break;
+                    case 3:
+                        list = list.OrderByDescending(x => x.Student.Surname).ToList();
+                        break;
+                    case 4:
+                        list = list.OrderByDescending(x => x.EDate).ToList();
+                        break;
+                    case 5:
+                        list = list.OrderByDescending(x => x.Auditory).ToList();
+                        break;
+                    case 6:
+                        list = list.OrderByDescending(x => x.Points).ToList();
                         break;
                 }
 
-                SearchText();
-            }
-            else if (isInverted == true)
-            {
-                switch (SortByComboBox.SelectedIndex)
-                {
-                    case 0:
-                        ExamListView.ItemsSource = App.db.Exam.ToList();
-                        break;
-                    case 1:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_disc).ToList();
-                        break;
-                    case 2:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_emp).ToList();
-                        break;
-                    case 3:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Id_stud).ToList();
-                        break;
-                    case 4:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.EDate).ToList();
-                        break;
-                    case 5:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Auditory).ToList();
-                        break;
-                    case 6:
-                        ExamListView.ItemsSource = App.db.Exam.OrderByDescending(x => x.Points).ToList();
-                        break;
-                }
-
-                SearchText();
-            }
-            InvertSortByButton.Visibility = SortByComboBox.SelectedIndex == 0 ? Visibility.Collapsed : Visibility.Visible;
-            ClearSearchbarButton.Visibility = SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
-            ClearFiltersButton.Visibility = SortByComboBox.SelectedIndex == 0 && SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
-        }
-
-        private void SearchText()
-        {
             if (SearchbarText.Text != "")
-                ExamListView.ItemsSource = App.db.Exam.Where(x =>
+                list = list.Where(x =>
                 x.Discipline.DName.ToLower().Contains(SearchbarText.Text.ToLower()) ||
                 x.Employee.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
                 x.Student.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
                 x.Auditory.ToLower().Contains(SearchbarText.Text.ToLower()) ||
                 x.Points.ToString().ToLower().Contains(SearchbarText.Text.ToLower())
                 ).ToList();
-            else if (SearchbarText.Text == "")
-                ExamListView.ItemsSource = App.db.Exam.ToList();
+
+            ExamListView.ItemsSource = null;
+            ExamListView.ItemsSource = list;
+            InvertSortByButton.Visibility = SortByComboBox.SelectedIndex == 0 ? Visibility.Collapsed : Visibility.Visible;
+            ClearSearchbarButton.Visibility = SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
+            ClearFiltersButton.Visibility = SortByComboBox.SelectedIndex == 0 && SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void SortByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

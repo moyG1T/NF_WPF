@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="NavigateToExamsButton" Click="NavigateToExamsButton_Click">Учет экзаменов</Button>
-            <Button>Пока не работает</Button>
+            <Button x:Name="NavigateToStudentsButton" Click="NavigateToStudentsButton_Click">Студенты</Button>
             <Button>Пока не работает</Button>
         </StackPanel>
     </Grid>
