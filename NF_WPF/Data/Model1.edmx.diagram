@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8208177ead0a4668a99658163761ab42" Name="Diagram1">
+      <Diagram DiagramId="fa4f597a889446a6bdefec9095f6bb2c" Name="Diagram1">
         <EntityTypeShape EntityType="NF_WPFModel.Department" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Discipline" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Employee" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="NF_WPFModel.Faculty" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Request" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Speciality" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFModel.Specialization" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Student" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Title" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.TitleRank" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />

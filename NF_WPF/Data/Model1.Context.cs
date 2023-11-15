@@ -32,6 +32,7 @@ namespace NF_WPF.Data
         public virtual DbSet<Faculty> Faculty { get; set; }
         public virtual DbSet<Request> Request { get; set; }
         public virtual DbSet<Speciality> Speciality { get; set; }
+        public virtual DbSet<Specialization> Specialization { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<TitleRank> TitleRank { get; set; }
