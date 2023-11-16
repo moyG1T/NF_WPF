@@ -12,9 +12,17 @@ namespace NF_WPF.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Specialization
+    public partial class ExamAuditory
     {
-        public int ID { get; set; }
-        public string Name_specialization { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ExamAuditory()
+        {
+            this.Exam = new HashSet<Exam>();
+        }
+    
+        public string AName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Exam> Exam { get; set; }
     }
 }

@@ -25,5 +25,6 @@ namespace NF_WPF.Data
         public virtual Discipline Discipline { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Student Student { get; set; }
+        public virtual ExamAuditory ExamAuditory { get; set; }
     }
 }

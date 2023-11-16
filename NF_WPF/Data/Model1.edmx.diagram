@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="NF_WPFModel.Faculty" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Request" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Speciality" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NF_WPFModel.Specialization" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Student" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.Title" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NF_WPFModel.TitleRank" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
@@ -28,6 +27,8 @@
         <AssociationConnector Association="NF_WPFModel.FK_Request_Speciality" ManuallyRouted="false" />
         <AssociationConnector Association="NF_WPFModel.FK_Student_Speciality" ManuallyRouted="false" />
         <AssociationConnector Association="NF_WPFModel.FK_Title_TitleRank" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NF_WPFModel.ExamAuditory" Width="1.5" PointX="0.75" PointY="7.875" />
+        <AssociationConnector Association="NF_WPFModel.FK_Exam_ExamAuditory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

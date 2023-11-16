@@ -56,7 +56,7 @@
                         <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Employee.Surname}">Преподаватель</GridViewColumn>
                         <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Student.Surname}">Студент</GridViewColumn>
                         <GridViewColumn Width="250" DisplayMemberBinding="{Binding EDate}">Дата</GridViewColumn>
-                        <GridViewColumn Width="125" DisplayMemberBinding="{Binding Auditory}">Аудитория</GridViewColumn>
+                        <GridViewColumn Width="125" DisplayMemberBinding="{Binding Path = ExamAuditory.AName}">Аудитория</GridViewColumn>
                         <GridViewColumn Width="100" DisplayMemberBinding="{Binding Points}">Оценка</GridViewColumn>
                     </GridView.Columns>
                 </GridView>

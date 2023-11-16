@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище NF_WPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище NF_WPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Id_dep" />
@@ -47,6 +47,12 @@
           <Property Name="Auditory" Type="nchar" MaxLength="4" />
           <Property Name="Points" Type="int" />
         </EntityType>
+        <EntityType Name="ExamAuditory">
+          <Key>
+            <PropertyRef Name="AName" />
+          </Key>
+          <Property Name="AName" Type="nchar" MaxLength="4" Nullable="false" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="Id_fac" />
@@ -70,13 +76,6 @@
           <Property Name="Id_spec" Type="int" Nullable="false" />
           <Property Name="SName" Type="nvarchar" MaxLength="200" />
           <Property Name="Id_dep" Type="int" />
-        </EntityType>
-        <EntityType Name="Specialization">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Name_specialization" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -173,6 +172,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Exam_ExamAuditory">
+          <End Role="ExamAuditory" Type="Self.ExamAuditory" Multiplicity="0..1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamAuditory">
+              <PropertyRef Name="AName" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="Auditory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Exam_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
@@ -250,10 +261,10 @@
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamAuditory" EntityType="Self.ExamAuditory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TitleRank" EntityType="Self.TitleRank" Schema="dbo" store:Type="Tables" />
@@ -281,6 +292,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
+          <AssociationSet Name="FK_Exam_ExamAuditory" Association="Self.FK_Exam_ExamAuditory">
+            <End Role="ExamAuditory" EntitySet="ExamAuditory" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
           <AssociationSet Name="FK_Exam_Student" Association="Self.FK_Exam_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Exam" EntitySet="Exam" />
@@ -306,8 +321,7 @@
             <End Role="Title" EntitySet="Title" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NF_WPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -365,6 +379,7 @@
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Exam_Discipline" FromRole="Exam" ToRole="Discipline" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Exam_Employee" FromRole="Exam" ToRole="Employee" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Exam_Student" FromRole="Exam" ToRole="Student" />
+          <NavigationProperty Name="ExamAuditory" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="Exam" ToRole="ExamAuditory" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -395,13 +410,6 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Speciality_Department" FromRole="Speciality" ToRole="Department" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Speciality" FromRole="Speciality" ToRole="Request" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Student_Speciality" FromRole="Speciality" ToRole="Student" />
-        </EntityType>
-        <EntityType Name="Specialization">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name_specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -583,7 +591,6 @@
           <EntitySet Name="Faculty" EntityType="Self.Faculty" />
           <EntitySet Name="Request" EntityType="Self.Request" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" />
-          <EntitySet Name="Specialization" EntityType="Self.Specialization" />
           <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="Title" EntityType="Self.Title" />
           <EntitySet Name="TitleRank" EntityType="Self.TitleRank" />
@@ -635,7 +642,31 @@
             <End Role="TitleRank" EntitySet="TitleRank" />
             <End Role="Title" EntitySet="Title" />
           </AssociationSet>
+          <EntitySet Name="ExamAuditory" EntityType="NF_WPFModel.ExamAuditory" />
+          <AssociationSet Name="FK_Exam_ExamAuditory" Association="NF_WPFModel.FK_Exam_ExamAuditory">
+            <End Role="ExamAuditory" EntitySet="ExamAuditory" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ExamAuditory">
+          <Key>
+            <PropertyRef Name="AName" />
+          </Key>
+          <Property Name="AName" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="ExamAuditory" ToRole="Exam" />
+        </EntityType>
+        <Association Name="FK_Exam_ExamAuditory">
+          <End Type="NF_WPFModel.ExamAuditory" Role="ExamAuditory" Multiplicity="0..1" />
+          <End Type="NF_WPFModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamAuditory">
+              <PropertyRef Name="AName" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="Auditory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -715,14 +746,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Specialization">
-            <EntityTypeMapping TypeName="NF_WPFModel.Specialization">
-              <MappingFragment StoreEntitySet="Specialization">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name_specialization" ColumnName="Name_specialization" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="NF_WPFModel.Student">
               <MappingFragment StoreEntitySet="Student">
@@ -746,6 +769,13 @@
               <MappingFragment StoreEntitySet="TitleRank">
                 <ScalarProperty Name="Id_tr" ColumnName="Id_tr" />
                 <ScalarProperty Name="TRRank" ColumnName="TRRank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamAuditory">
+            <EntityTypeMapping TypeName="NF_WPFModel.ExamAuditory">
+              <MappingFragment StoreEntitySet="ExamAuditory">
+                <ScalarProperty Name="AName" ColumnName="AName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,11 +13,11 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Left">Дисциплина</TextBlock>
-                    <ComboBox x:Name ="DisciplineComboBox" HorizontalAlignment="Left"></ComboBox>
+                    <ComboBox x:Name ="DisciplineComboBox" Text="{Binding Path= Discipline.DName}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock>Преподаватель</TextBlock>
-                    <TextBox x:Name ="LecturerText" Text="{Binding Path = Employee.Surname}" HorizontalAlignment="Left"></TextBox>
+                    <ComboBox x:Name ="LecturerComboBox" Text="{Binding Path= Employee.Surname}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
@@ -26,21 +26,21 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <TextBlock>Аудитория</TextBlock>
-                        <TextBox x:Name ="AuditoryText" Text="{Binding Auditory}" HorizontalAlignment="Left"></TextBox>
+                        <ComboBox x:Name ="AuditoryComboBox" Text="{Binding Path = ExamAuditory.AName}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <TextBlock>Студент</TextBlock>
-                        <TextBox x:Name ="StudentText" Text="{Binding Path = Student.Surname}" HorizontalAlignment="Left"></TextBox>
+                        <ComboBox x:Name ="StudentComboBox" HorizontalAlignment="Left" IsEditable="True" Text="{Binding Path = Student.Surname}"></ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <TextBlock>Оценка</TextBlock>
-                        <TextBox x:Name ="PointsText" Text="{Binding Points}" HorizontalAlignment="Left" Width="50"></TextBox>
+                        <TextBox x:Name ="PointsText" Text="{Binding Points}" HorizontalAlignment="Left" Width="50" PreviewTextInput="PointsText_PreviewTextInput"></TextBox>
                     </StackPanel>
                 </StackPanel>
-                <Button HorizontalAlignment="Center" Width="200" Margin="0,50,0,0">Сохранить</Button>
+                <Button x:Name="SaveButton" HorizontalAlignment="Center" Width="200" Margin="0,50,0,0" Click="SaveButton_Click">Сохранить</Button>
             </StackPanel>
         </Border>
     </Grid>
