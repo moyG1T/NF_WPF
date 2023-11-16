@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id_dep" />
           </Key>
-          <Property Name="Id_dep" Type="int" Nullable="false" />
+          <Property Name="Id_dep" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="10" />
           <Property Name="DName" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_fac" Type="int" />
@@ -18,7 +18,7 @@
           <Key>
             <PropertyRef Name="Id_disc" />
           </Key>
-          <Property Name="Id_disc" Type="int" Nullable="false" />
+          <Property Name="Id_disc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Workload" Type="int" />
           <Property Name="DName" Type="nvarchar(max)" />
           <Property Name="Id_req" Type="int" />
@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="Id_emp" />
           </Key>
-          <Property Name="Id_emp" Type="int" Nullable="false" />
+          <Property Name="Id_emp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_dep" Type="int" />
           <Property Name="Surname" Type="nvarchar" MaxLength="100" />
           <Property Name="Id_tit" Type="int" />
@@ -39,13 +39,14 @@
           <Key>
             <PropertyRef Name="Id_exam" />
           </Key>
-          <Property Name="Id_exam" Type="int" Nullable="false" />
+          <Property Name="Id_exam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EDate" Type="date" />
           <Property Name="Id_disc" Type="int" />
           <Property Name="Id_stud" Type="int" />
           <Property Name="Id_emp" Type="int" />
           <Property Name="Auditory" Type="nchar" MaxLength="4" />
           <Property Name="Points" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="ExamAuditory">
           <Key>
@@ -57,7 +58,7 @@
           <Key>
             <PropertyRef Name="Id_fac" />
           </Key>
-          <Property Name="Id_fac" Type="int" Nullable="false" />
+          <Property Name="Id_fac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="50" />
           <Property Name="FName" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -65,7 +66,7 @@
           <Key>
             <PropertyRef Name="Id_req" />
           </Key>
-          <Property Name="Id_req" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id_req" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_disc" Type="int" />
           <Property Name="Id_spec" Type="int" />
         </EntityType>
@@ -73,7 +74,7 @@
           <Key>
             <PropertyRef Name="Id_spec" />
           </Key>
-          <Property Name="Id_spec" Type="int" Nullable="false" />
+          <Property Name="Id_spec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SName" Type="nvarchar" MaxLength="200" />
           <Property Name="Id_dep" Type="int" />
         </EntityType>
@@ -81,7 +82,7 @@
           <Key>
             <PropertyRef Name="Id_stud" />
           </Key>
-          <Property Name="Id_stud" Type="int" Nullable="false" />
+          <Property Name="Id_stud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_spec" Type="int" />
           <Property Name="Surname" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -89,7 +90,7 @@
           <Key>
             <PropertyRef Name="Id_tit" />
           </Key>
-          <Property Name="Id_tit" Type="int" Nullable="false" />
+          <Property Name="Id_tit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TName" Type="nvarchar(max)" />
           <Property Name="Id_tr" Type="int" />
         </EntityType>
@@ -97,7 +98,7 @@
           <Key>
             <PropertyRef Name="Id_tr" />
           </Key>
-          <Property Name="Id_tr" Type="int" Nullable="false" />
+          <Property Name="Id_tr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRRank" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Department_Faculty">
@@ -329,7 +330,7 @@
           <Key>
             <PropertyRef Name="Id_dep" />
           </Key>
-          <Property Name="Id_dep" Type="Int32" Nullable="false" />
+          <Property Name="Id_dep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abbreviation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="DName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_fac" Type="Int32" />
@@ -341,18 +342,18 @@
           <Key>
             <PropertyRef Name="Id_disc" />
           </Key>
-          <Property Name="Id_disc" Type="Int32" Nullable="false" />
+          <Property Name="Id_disc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Workload" Type="Int32" />
           <Property Name="DName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Id_req" Type="Int32" />
-          <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Discipline" FromRole="Discipline" ToRole="Exam" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Discipline" FromRole="Discipline" ToRole="Request" />
+          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Discipline" FromRole="Discipline" ToRole="Exam" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id_emp" />
           </Key>
-          <Property Name="Id_emp" Type="Int32" Nullable="false" />
+          <Property Name="Id_emp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_dep" Type="Int32" />
           <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Id_tit" Type="Int32" />
@@ -363,29 +364,20 @@
           <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
           <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Employee_Title" FromRole="Employee" ToRole="Title" />
-          <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Employee" FromRole="Employee" ToRole="Exam" />
+          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Employee" FromRole="Employee" ToRole="Exam" />
         </EntityType>
-        <EntityType Name="Exam">
+        <EntityType Name="ExamAuditory">
           <Key>
-            <PropertyRef Name="Id_exam" />
+            <PropertyRef Name="AName" />
           </Key>
-          <Property Name="Id_exam" Type="Int32" Nullable="false" />
-          <Property Name="EDate" Type="DateTime" Precision="0" />
-          <Property Name="Id_disc" Type="Int32" />
-          <Property Name="Id_stud" Type="Int32" />
-          <Property Name="Id_emp" Type="Int32" />
-          <Property Name="Auditory" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-          <Property Name="Points" Type="Int32" />
-          <NavigationProperty Name="Discipline" Relationship="Self.FK_Exam_Discipline" FromRole="Exam" ToRole="Discipline" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Exam_Employee" FromRole="Exam" ToRole="Employee" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Exam_Student" FromRole="Exam" ToRole="Student" />
-          <NavigationProperty Name="ExamAuditory" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="Exam" ToRole="ExamAuditory" />
+          <Property Name="AName" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="ExamAuditory" ToRole="Exam" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="Id_fac" />
           </Key>
-          <Property Name="Id_fac" Type="Int32" Nullable="false" />
+          <Property Name="Id_fac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
@@ -394,7 +386,7 @@
           <Key>
             <PropertyRef Name="Id_req" />
           </Key>
-          <Property Name="Id_req" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Id_req" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_disc" Type="Int32" />
           <Property Name="Id_spec" Type="Int32" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Request_Discipline" FromRole="Request" ToRole="Discipline" />
@@ -404,7 +396,7 @@
           <Key>
             <PropertyRef Name="Id_spec" />
           </Key>
-          <Property Name="Id_spec" Type="Int32" Nullable="false" />
+          <Property Name="Id_spec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Id_dep" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Speciality_Department" FromRole="Speciality" ToRole="Department" />
@@ -415,17 +407,17 @@
           <Key>
             <PropertyRef Name="Id_stud" />
           </Key>
-          <Property Name="Id_stud" Type="Int32" Nullable="false" />
+          <Property Name="Id_stud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_spec" Type="Int32" />
           <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Student" FromRole="Student" ToRole="Exam" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Student_Speciality" FromRole="Student" ToRole="Speciality" />
+          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Student" FromRole="Student" ToRole="Exam" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
             <PropertyRef Name="Id_tit" />
           </Key>
-          <Property Name="Id_tit" Type="Int32" Nullable="false" />
+          <Property Name="Id_tit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Id_tr" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Title" FromRole="Title" ToRole="Employee" />
@@ -435,7 +427,7 @@
           <Key>
             <PropertyRef Name="Id_tr" />
           </Key>
-          <Property Name="Id_tr" Type="Int32" Nullable="false" />
+          <Property Name="Id_tr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRRank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Title_TitleRank" FromRole="TitleRank" ToRole="Title" />
         </EntityType>
@@ -475,18 +467,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exam_Discipline">
-          <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
-          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Discipline">
-              <PropertyRef Name="Id_disc" />
-            </Principal>
-            <Dependent Role="Exam">
-              <PropertyRef Name="Id_disc" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Request_Discipline">
           <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
@@ -520,30 +500,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="Id_tit" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Exam_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id_emp" />
-            </Principal>
-            <Dependent Role="Exam">
-              <PropertyRef Name="Id_emp" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Exam_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id_stud" />
-            </Principal>
-            <Dependent Role="Exam">
-              <PropertyRef Name="Id_stud" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -587,7 +543,7 @@
           <EntitySet Name="Department" EntityType="Self.Department" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
-          <EntitySet Name="Exam" EntityType="Self.Exam" />
+          <EntitySet Name="ExamAuditory" EntityType="Self.ExamAuditory" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" />
           <EntitySet Name="Request" EntityType="Self.Request" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" />
@@ -606,10 +562,6 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Speciality" EntitySet="Speciality" />
           </AssociationSet>
-          <AssociationSet Name="FK_Exam_Discipline" Association="Self.FK_Exam_Discipline">
-            <End Role="Discipline" EntitySet="Discipline" />
-            <End Role="Exam" EntitySet="Exam" />
-          </AssociationSet>
           <AssociationSet Name="FK_Request_Discipline" Association="Self.FK_Request_Discipline">
             <End Role="Discipline" EntitySet="Discipline" />
             <End Role="Request" EntitySet="Request" />
@@ -621,14 +573,6 @@
           <AssociationSet Name="FK_Employee_Title" Association="Self.FK_Employee_Title">
             <End Role="Title" EntitySet="Title" />
             <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exam_Employee" Association="Self.FK_Exam_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Exam" EntitySet="Exam" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exam_Student" Association="Self.FK_Exam_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
           <AssociationSet Name="FK_Request_Speciality" Association="Self.FK_Request_Speciality">
             <End Role="Speciality" EntitySet="Speciality" />
@@ -642,19 +586,65 @@
             <End Role="TitleRank" EntitySet="TitleRank" />
             <End Role="Title" EntitySet="Title" />
           </AssociationSet>
-          <EntitySet Name="ExamAuditory" EntityType="NF_WPFModel.ExamAuditory" />
+          <EntitySet Name="Exam" EntityType="NF_WPFModel.Exam" />
+          <AssociationSet Name="FK_Exam_Discipline" Association="NF_WPFModel.FK_Exam_Discipline">
+            <End Role="Discipline" EntitySet="Discipline" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Employee" Association="NF_WPFModel.FK_Exam_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
           <AssociationSet Name="FK_Exam_ExamAuditory" Association="NF_WPFModel.FK_Exam_ExamAuditory">
             <End Role="ExamAuditory" EntitySet="ExamAuditory" />
             <End Role="Exam" EntitySet="Exam" />
           </AssociationSet>
+          <AssociationSet Name="FK_Exam_Student" Association="NF_WPFModel.FK_Exam_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="ExamAuditory">
+        <EntityType Name="Exam">
           <Key>
-            <PropertyRef Name="AName" />
+            <PropertyRef Name="Id_exam" />
           </Key>
-          <Property Name="AName" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="ExamAuditory" ToRole="Exam" />
+          <Property Name="Id_exam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EDate" Type="DateTime" Precision="0" />
+          <Property Name="Id_disc" Type="Int32" />
+          <Property Name="Id_stud" Type="Int32" />
+          <Property Name="Id_emp" Type="Int32" />
+          <Property Name="Auditory" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="Points" Type="Int32" />
+          <Property Name="IsRemoved" Type="Boolean" />
+          <NavigationProperty Name="Discipline" Relationship="NF_WPFModel.FK_Exam_Discipline" FromRole="Exam" ToRole="Discipline" />
+          <NavigationProperty Name="Employee" Relationship="NF_WPFModel.FK_Exam_Employee" FromRole="Exam" ToRole="Employee" />
+          <NavigationProperty Name="ExamAuditory" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="Exam" ToRole="ExamAuditory" />
+          <NavigationProperty Name="Student" Relationship="NF_WPFModel.FK_Exam_Student" FromRole="Exam" ToRole="Student" />
         </EntityType>
+        <Association Name="FK_Exam_Discipline">
+          <End Type="NF_WPFModel.Discipline" Role="Discipline" Multiplicity="0..1" />
+          <End Type="NF_WPFModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id_disc" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="Id_disc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Employee">
+          <End Type="NF_WPFModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="NF_WPFModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id_emp" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="Id_emp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Exam_ExamAuditory">
           <End Type="NF_WPFModel.ExamAuditory" Role="ExamAuditory" Multiplicity="0..1" />
           <End Type="NF_WPFModel.Exam" Role="Exam" Multiplicity="*" />
@@ -664,6 +654,18 @@
             </Principal>
             <Dependent Role="Exam">
               <PropertyRef Name="Auditory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Student">
+          <End Type="NF_WPFModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="NF_WPFModel.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id_stud" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="Id_stud" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -706,16 +708,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Exam">
-            <EntityTypeMapping TypeName="NF_WPFModel.Exam">
-              <MappingFragment StoreEntitySet="Exam">
-                <ScalarProperty Name="Id_exam" ColumnName="Id_exam" />
-                <ScalarProperty Name="EDate" ColumnName="EDate" />
-                <ScalarProperty Name="Id_disc" ColumnName="Id_disc" />
-                <ScalarProperty Name="Id_stud" ColumnName="Id_stud" />
-                <ScalarProperty Name="Id_emp" ColumnName="Id_emp" />
-                <ScalarProperty Name="Auditory" ColumnName="Auditory" />
-                <ScalarProperty Name="Points" ColumnName="Points" />
+          <EntitySetMapping Name="ExamAuditory">
+            <EntityTypeMapping TypeName="NF_WPFModel.ExamAuditory">
+              <MappingFragment StoreEntitySet="ExamAuditory">
+                <ScalarProperty Name="AName" ColumnName="AName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -772,10 +768,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ExamAuditory">
-            <EntityTypeMapping TypeName="NF_WPFModel.ExamAuditory">
-              <MappingFragment StoreEntitySet="ExamAuditory">
-                <ScalarProperty Name="AName" ColumnName="AName" />
+          <EntitySetMapping Name="Exam">
+            <EntityTypeMapping TypeName="NF_WPFModel.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="Auditory" ColumnName="Auditory" />
+                <ScalarProperty Name="Id_emp" ColumnName="Id_emp" />
+                <ScalarProperty Name="Id_stud" ColumnName="Id_stud" />
+                <ScalarProperty Name="Id_disc" ColumnName="Id_disc" />
+                <ScalarProperty Name="EDate" ColumnName="EDate" />
+                <ScalarProperty Name="Id_exam" ColumnName="Id_exam" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

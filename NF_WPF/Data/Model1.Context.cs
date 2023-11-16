@@ -28,13 +28,13 @@ namespace NF_WPF.Data
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Discipline> Discipline { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Exam> Exam { get; set; }
+        public virtual DbSet<ExamAuditory> ExamAuditory { get; set; }
         public virtual DbSet<Faculty> Faculty { get; set; }
         public virtual DbSet<Request> Request { get; set; }
         public virtual DbSet<Speciality> Speciality { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<TitleRank> TitleRank { get; set; }
-        public virtual DbSet<ExamAuditory> ExamAuditory { get; set; }
+        public virtual DbSet<Exam> Exam { get; set; }
     }
 }

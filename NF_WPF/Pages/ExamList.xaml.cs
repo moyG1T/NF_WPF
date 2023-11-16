@@ -23,16 +23,21 @@ namespace NF_WPF.Pages
     public partial class ExamList : Page
     {
         bool isInverted = false;
+        bool AreRemovedShowed = false;
         public ExamList()
         {
             InitializeComponent();
             SortByComboBox.SelectedIndex = 0;
-            ExamListView.ItemsSource = App.db.Exam.ToList();
+            ExamListView.ItemsSource = ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == false).ToList();
         }
 
         private void RefreshFilters()
         {
-            IEnumerable<Exam> list = App.db.Exam.ToList();
+            IEnumerable<Exam> list = AreRemovedShowed ?
+                App.db.Exam.Where(x => x.IsRemoved == true).ToList()
+            :
+                App.db.Exam.Where(x => x.IsRemoved == false).ToList();
+
 
             if (isInverted == false && SortByComboBox.SelectedIndex != 0)
                 switch (SortByComboBox.SelectedIndex)
@@ -90,6 +95,7 @@ namespace NF_WPF.Pages
 
             ExamListView.ItemsSource = null;
             ExamListView.ItemsSource = list;
+
             InvertSortByButton.Visibility = SortByComboBox.SelectedIndex == 0 ? Visibility.Collapsed : Visibility.Visible;
             ClearSearchbarButton.Visibility = SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
             ClearFiltersButton.Visibility = SortByComboBox.SelectedIndex == 0 && SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
@@ -124,15 +130,59 @@ namespace NF_WPF.Pages
             SearchbarText.Text = "";
             RefreshFilters();
         }
-
-        private void EditElementButton_Click(object sender, RoutedEventArgs e)
-        {
-            AppNav.Navigate(new PageComps("Редактирование", new EditExam(ExamListView.SelectedItem as Exam)));
-        }
-
         private void AddElementButton_Click(object sender, RoutedEventArgs e)
         {
             AppNav.Navigate(new PageComps("Добавление", new EditExam(new Exam())));
         }
+
+        private void EditElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ExamListView.SelectedItem != null)
+                AppNav.Navigate(new PageComps("Редактирование", new EditExam(ExamListView.SelectedItem as Exam)));
+            else
+                MessageBox.Show("Выберите элемент");
+        }
+
+
+        private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            (ExamListView.SelectedItem as Exam).IsRemoved = true;
+            App.db.SaveChanges();
+            RefreshFilters();
+        }
+        private void RestoreElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            (ExamListView.SelectedItem as Exam).IsRemoved = false;
+            App.db.SaveChanges();
+            RefreshFilters();
+        }
+
+        private void ShowRemovedAppoints_Click(object sender, RoutedEventArgs e)
+        {
+
+            AreRemovedShowed = !AreRemovedShowed;
+
+            ExamListView.ItemsSource = AreRemovedShowed ?
+                ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == true).ToList()
+            :
+                ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == false).ToList();
+
+            if (AreRemovedShowed == false)
+            {
+                ShowRemovedText.Text = "Актуальный список";
+                App.mainWindow.TitleText.Text = "Экзамены";
+            }
+            else
+            {
+                ShowRemovedText.Text = "Удаленные элементы";
+                App.mainWindow.TitleText.Text = "Удаленные элементы";
+            }
+
+            AddElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            EditElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            RemoveElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            RestoreElementButton.Visibility = AreRemovedShowed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
     }
 }

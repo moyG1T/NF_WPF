@@ -24,8 +24,8 @@ namespace NF_WPF.Data
         public Nullable<int> Id_spec { get; set; }
         public string Surname { get; set; }
     
+        public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }
-        public virtual Speciality Speciality { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace NF_WPF.Data
     
     public partial class Request
     {
-        public string Id_req { get; set; }
+        public int Id_req { get; set; }
         public Nullable<int> Id_disc { get; set; }
         public Nullable<int> Id_spec { get; set; }
     
