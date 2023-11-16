@@ -62,18 +62,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,10,0,10" Orientation="Vertical">
-            <TextBlock>Элемент</TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="AddElementButton" Click="AddElementButton_Click">Добавить</Button>
-                <Button x:Name="EditElementButton" Click="EditElementButton_Click">Редактировать</Button>
-                <Button x:Name="RemoveElementButton" Click="RemoveElementButton_Click">Удалить</Button>
-                <Button x:Name="RestoreElementButton" Click="RestoreElementButton_Click" Content="Восстановить" Visibility="Collapsed"/>
+        <DockPanel x:Name="BottomBar" Grid.Row="2" Grid.Column="1" Margin="0,10,0,10">
+            <StackPanel Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Left">Элемент</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="AddElementButton" Click="AddElementButton_Click">Добавить</Button>
+                    <Button x:Name="EditElementButton" Click="EditElementButton_Click">Редактировать</Button>
+                    <Button x:Name="RemoveElementButton" Click="RemoveElementButton_Click">Удалить</Button>
+                    <Button x:Name="RestoreElementButton" Click="RestoreElementButton_Click" Content="Восстановить" Visibility="Collapsed"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <Button x:Name="ShowRemovedAppointsButton" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ShowRemovedAppoints_Click">
-            <TextBlock x:Name="ShowRemovedText" Text="Удаленные элементы"/>
-        </Button>
+            <Button x:Name="ShowRemovedAppointsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ShowRemovedAppoints_Click">
+                <TextBlock x:Name="ShowRemovedText" Text="Удаленные элементы"/>
+            </Button>
+        </DockPanel>
     </Grid>
 </Page>

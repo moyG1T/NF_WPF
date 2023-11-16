@@ -26,6 +26,7 @@ namespace NF_WPF.Pages
         {
             InitializeComponent();
             SortByComboBox.SelectedIndex = 0;
+            BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
             ExamListView.ItemsSource = App.db.Student.ToList();
         }
         private void RefreshFilters()

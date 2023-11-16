@@ -124,6 +124,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Authorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +148,9 @@
   <ItemGroup>
     <Compile Include="NavHost\AppNav.cs" />
     <Compile Include="NavHost\PageComps.cs" />
+    <Compile Include="Pages\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditExam.xaml.cs">
       <DependentUpon>EditExam.xaml</DependentUpon>
     </Compile>

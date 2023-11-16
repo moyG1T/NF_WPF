@@ -26,7 +26,7 @@ namespace NF_WPF
         {
             InitializeComponent();
             App.mainWindow = this;
-            AppNav.Navigate(new PageComps("Главная", new MainMenu()));
+            AppNav.Navigate(new PageComps("Авторизация", new Authorization()));
         }
 
         private void PopButton_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace NF_WPF
         private void QuitAsAdminButton_Click(object sender, RoutedEventArgs e)
         {
             AppNav.DropHistory();
-            AppNav.Navigate(new PageComps("Главная", new MainMenu()));
+            AppNav.Navigate(new PageComps("Авторизация", new Authorization()));
         }
     }
 }

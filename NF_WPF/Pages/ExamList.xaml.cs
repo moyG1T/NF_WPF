@@ -28,6 +28,7 @@ namespace NF_WPF.Pages
         {
             InitializeComponent();
             SortByComboBox.SelectedIndex = 0;
+            BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
             ExamListView.ItemsSource = ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == false).ToList();
         }
 
