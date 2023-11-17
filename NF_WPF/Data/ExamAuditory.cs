@@ -21,6 +21,7 @@ namespace NF_WPF.Data
         }
     
         public string AName { get; set; }
+        public Nullable<bool> IsRemoved { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }

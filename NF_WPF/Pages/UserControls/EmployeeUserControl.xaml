@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="NF_WPF.Pages.UserControls.EmployeeUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NF_WPF.Pages.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="650">
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Width="600" Height="200" Margin="5">
+            <DockPanel  Width="600" Height="200" Grid.Column="1" Grid.Row="1" Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <TextBlock x:Name="HeadDepartmentText" FontSize="24"></TextBlock>
+                        <TextBlock x:Name="SurnameText" Text="{Binding Surname}" FontSize="24"></TextBlock>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Кафедра:</TextBlock>
+                            <TextBlock x:Name="DepartmentText" Text="{Binding Path = Department.DName}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Должность:</TextBlock>
+                            <TextBlock x:Name="TitleText" Text="{Binding Path = Title.TName}"></TextBlock>
+                            <TextBlock x:Name="TitleRankText" Text="{Binding Path = Title.TitleRank.TRRank}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>Зарплата:</TextBlock>
+                            <TextBlock x:Name="SalaryText"></TextBlock>
+                        </StackPanel>
+                        <StackPanel x:Name="ChefPanel" Orientation="Horizontal">
+                            <TextBlock>Начальник:</TextBlock>
+                            <TextBlock x:Name="ChefText" Text=""></TextBlock>
+                        </StackPanel>
+                        <StackPanel x:Name="ExpPanel" Orientation="Horizontal">
+                            <TextBlock>Стаж (год):</TextBlock>
+                            <TextBlock x:Name="ExpText" Text="{Binding Path = Exp}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

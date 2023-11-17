@@ -39,5 +39,10 @@ namespace NF_WPF
             AppNav.DropHistory();
             AppNav.Navigate(new PageComps("Авторизация", new Authorization()));
         }
+
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Мой профиль", new MyProfile()));
+        }
     }
 }

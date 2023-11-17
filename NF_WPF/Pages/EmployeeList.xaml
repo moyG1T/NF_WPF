@@ -1,4 +1,4 @@
-﻿<Page x:Class="NF_WPF.Pages.StudentList"
+﻿<Page x:Class="NF_WPF.Pages.EmployeeList"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:NF_WPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="840" d:DesignWidth="1280"
-      Title="StudentList">
+      Title="EmployeeList">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -25,10 +26,14 @@
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="SortByComboBox" SelectionChanged="SortByComboBox_SelectionChanged">
                         <ComboBoxItem>По умолчанию</ComboBoxItem>
-                        <ComboBoxItem>По фамилии</ComboBoxItem>
-                        <ComboBoxItem>По специальности</ComboBoxItem>
+                        <ComboBoxItem>По дисциплине</ComboBoxItem>
+                        <ComboBoxItem>По преподавателю</ComboBoxItem>
+                        <ComboBoxItem>По студенту</ComboBoxItem>
+                        <ComboBoxItem>По дате</ComboBoxItem>
+                        <ComboBoxItem>По аудитории</ComboBoxItem>
+                        <ComboBoxItem>По оценке</ComboBoxItem>
                     </ComboBox>
-                    <Button x:Name="InvertSortByButton" Background="#FFFF8000" Foreground="White" Click="InvertSortByButton_Click" >⇅</Button>
+                    <Button x:Name="InvertSortByButton" Background="#FFFF8000" Foreground="White" Click="InvertSortByButton_Click">⇅</Button>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical">
@@ -43,28 +48,23 @@
             </Button>
         </StackPanel>
 
-        <ListView x:Name="StudentListView" Grid.ColumnSpan="3" Grid.Row="1">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Surname}">Студент</GridViewColumn>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path = Speciality.SName}">Специальность</GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <DockPanel x:Name="BottomBar" Grid.Row="2" Grid.Column="1" Margin="0,10,0,10" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3">
+            <WrapPanel x:Name="EmployeeWrapPanel" HorizontalAlignment="Center"></WrapPanel>
+        </ScrollViewer>
+        
+        <DockPanel x:Name="BottomBar" Grid.Row="2" Grid.Column="1" Margin="0,10,0,10">
+            <StackPanel Orientation="Vertical">
                 <TextBlock HorizontalAlignment="Left">Элемент</TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="GetElementInfoButton">Узнать больше</Button>
                     <Button x:Name="AddElementButton" Click="AddElementButton_Click">Добавить</Button>
                     <Button x:Name="EditElementButton" Click="EditElementButton_Click">Редактировать</Button>
                     <Button x:Name="RemoveElementButton" Click="RemoveElementButton_Click">Удалить</Button>
-                    <Button x:Name="RestoreElementButton" Content="Восстановить" Visibility="Collapsed" Click="RestoreElementButton_Click"/>
+                    <Button x:Name="RestoreElementButton" Click="RestoreElementButton_Click" Content="Восстановить" Visibility="Collapsed"/>
                 </StackPanel>
             </StackPanel>
-            <Button x:Name="ShowRemovedAppointsButton" HorizontalAlignment="Right" Click="ShowRemovedAppointsButton_Click">Удаленные элементы</Button>
+            <Button x:Name="ShowRemovedAppointsButton" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ShowRemovedAppoints_Click">
+                <TextBlock x:Name="ShowRemovedText" Text="Удаленные элементы"/>
+            </Button>
         </DockPanel>
     </Grid>
 </Page>

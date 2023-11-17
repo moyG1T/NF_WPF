@@ -19,6 +19,7 @@ namespace NF_WPF
         public static bool isAdmin = false;
         public static bool isLecturer = false;
         public static bool isStudent = false;
+        public static int userId;
         public static MainWindow mainWindow;
     }
 }

@@ -13,6 +13,7 @@
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="10" />
           <Property Name="DName" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_fac" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Discipline">
           <Key>
@@ -22,6 +23,7 @@
           <Property Name="Workload" Type="int" />
           <Property Name="DName" Type="nvarchar(max)" />
           <Property Name="Id_req" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -30,10 +32,12 @@
           <Property Name="Id_emp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_dep" Type="int" />
           <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Id_tit" Type="int" />
           <Property Name="Salary" Type="int" />
           <Property Name="Chef" Type="int" />
           <Property Name="Exp" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Exam">
           <Key>
@@ -53,6 +57,7 @@
             <PropertyRef Name="AName" />
           </Key>
           <Property Name="AName" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -61,6 +66,7 @@
           <Property Name="Id_fac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="nvarchar" MaxLength="50" />
           <Property Name="FName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -69,6 +75,7 @@
           <Property Name="Id_req" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_disc" Type="int" />
           <Property Name="Id_spec" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Speciality">
           <Key>
@@ -77,6 +84,7 @@
           <Property Name="Id_spec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SName" Type="nvarchar" MaxLength="200" />
           <Property Name="Id_dep" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -85,6 +93,8 @@
           <Property Name="Id_stud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_spec" Type="int" />
           <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -93,6 +103,7 @@
           <Property Name="Id_tit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TName" Type="nvarchar(max)" />
           <Property Name="Id_tr" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <EntityType Name="TitleRank">
           <Key>
@@ -100,6 +111,7 @@
           </Key>
           <Property Name="Id_tr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRRank" Type="nvarchar(max)" />
+          <Property Name="IsRemoved" Type="bit" />
         </EntityType>
         <Association Name="FK_Department_Faculty">
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
@@ -122,18 +134,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="Id_dep" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id_emp" />
-            </Principal>
-            <Dependent Role="Employee1">
-              <PropertyRef Name="Chef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -277,10 +277,6 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Employee1" EntitySet="Employee" />
-          </AssociationSet>
           <AssociationSet Name="FK_Employee_Title" Association="Self.FK_Employee_Title">
             <End Role="Title" EntitySet="Title" />
             <End Role="Employee" EntitySet="Employee" />
@@ -337,6 +333,7 @@
           <NavigationProperty Name="Faculty" Relationship="Self.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Speciality_Department" FromRole="Department" ToRole="Speciality" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Discipline">
           <Key>
@@ -348,6 +345,7 @@
           <Property Name="Id_req" Type="Int32" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Discipline" FromRole="Discipline" ToRole="Request" />
           <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Discipline" FromRole="Discipline" ToRole="Exam" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -365,6 +363,8 @@
           <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Employee_Title" FromRole="Employee" ToRole="Title" />
           <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Employee" FromRole="Employee" ToRole="Exam" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="ExamAuditory">
           <Key>
@@ -372,6 +372,7 @@
           </Key>
           <Property Name="AName" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_ExamAuditory" FromRole="ExamAuditory" ToRole="Exam" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -381,6 +382,7 @@
           <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -391,6 +393,7 @@
           <Property Name="Id_spec" Type="Int32" />
           <NavigationProperty Name="Discipline" Relationship="Self.FK_Request_Discipline" FromRole="Request" ToRole="Discipline" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Request_Speciality" FromRole="Request" ToRole="Speciality" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Speciality">
           <Key>
@@ -402,6 +405,7 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Speciality_Department" FromRole="Speciality" ToRole="Department" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Speciality" FromRole="Speciality" ToRole="Request" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Student_Speciality" FromRole="Speciality" ToRole="Student" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -412,6 +416,8 @@
           <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Speciality" Relationship="Self.FK_Student_Speciality" FromRole="Student" ToRole="Speciality" />
           <NavigationProperty Name="Exam" Relationship="NF_WPFModel.FK_Exam_Student" FromRole="Student" ToRole="Exam" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="Title">
           <Key>
@@ -422,6 +428,7 @@
           <Property Name="Id_tr" Type="Int32" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Title" FromRole="Title" ToRole="Employee" />
           <NavigationProperty Name="TitleRank" Relationship="Self.FK_Title_TitleRank" FromRole="Title" ToRole="TitleRank" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <EntityType Name="TitleRank">
           <Key>
@@ -430,6 +437,7 @@
           <Property Name="Id_tr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRRank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Title" Relationship="Self.FK_Title_TitleRank" FromRole="TitleRank" ToRole="Title" />
+          <Property Name="IsRemoved" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Department_Faculty">
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
@@ -678,6 +686,7 @@
           <EntitySetMapping Name="Department">
             <EntityTypeMapping TypeName="NF_WPFModel.Department">
               <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_dep" ColumnName="Id_dep" />
                 <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
                 <ScalarProperty Name="DName" ColumnName="DName" />
@@ -688,6 +697,7 @@
           <EntitySetMapping Name="Discipline">
             <EntityTypeMapping TypeName="NF_WPFModel.Discipline">
               <MappingFragment StoreEntitySet="Discipline">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_disc" ColumnName="Id_disc" />
                 <ScalarProperty Name="Workload" ColumnName="Workload" />
                 <ScalarProperty Name="DName" ColumnName="DName" />
@@ -698,6 +708,8 @@
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="NF_WPFModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id_emp" ColumnName="Id_emp" />
                 <ScalarProperty Name="Id_dep" ColumnName="Id_dep" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -711,6 +723,7 @@
           <EntitySetMapping Name="ExamAuditory">
             <EntityTypeMapping TypeName="NF_WPFModel.ExamAuditory">
               <MappingFragment StoreEntitySet="ExamAuditory">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="AName" ColumnName="AName" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -718,6 +731,7 @@
           <EntitySetMapping Name="Faculty">
             <EntityTypeMapping TypeName="NF_WPFModel.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_fac" ColumnName="Id_fac" />
                 <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
@@ -727,6 +741,7 @@
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="NF_WPFModel.Request">
               <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_req" ColumnName="Id_req" />
                 <ScalarProperty Name="Id_disc" ColumnName="Id_disc" />
                 <ScalarProperty Name="Id_spec" ColumnName="Id_spec" />
@@ -736,6 +751,7 @@
           <EntitySetMapping Name="Speciality">
             <EntityTypeMapping TypeName="NF_WPFModel.Speciality">
               <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_spec" ColumnName="Id_spec" />
                 <ScalarProperty Name="SName" ColumnName="SName" />
                 <ScalarProperty Name="Id_dep" ColumnName="Id_dep" />
@@ -745,6 +761,8 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="NF_WPFModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id_stud" ColumnName="Id_stud" />
                 <ScalarProperty Name="Id_spec" ColumnName="Id_spec" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -754,6 +772,7 @@
           <EntitySetMapping Name="Title">
             <EntityTypeMapping TypeName="NF_WPFModel.Title">
               <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_tit" ColumnName="Id_tit" />
                 <ScalarProperty Name="TName" ColumnName="TName" />
                 <ScalarProperty Name="Id_tr" ColumnName="Id_tr" />
@@ -763,6 +782,7 @@
           <EntitySetMapping Name="TitleRank">
             <EntityTypeMapping TypeName="NF_WPFModel.TitleRank">
               <MappingFragment StoreEntitySet="TitleRank">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
                 <ScalarProperty Name="Id_tr" ColumnName="Id_tr" />
                 <ScalarProperty Name="TRRank" ColumnName="TRRank" />
               </MappingFragment>

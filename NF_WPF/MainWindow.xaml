@@ -29,8 +29,9 @@
         <TextBlock x:Name="ModeText" Grid.Column="1" FontSize="18" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom">Режим модератора активен</TextBlock>
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="QuitButton" Click="QuitAsAdminButton_Click">Выйти</Button>
             <Button x:Name="PopButton" Click="PopButton_Click">Назад</Button>
+            <Button x:Name="QuitButton" Click="QuitAsAdminButton_Click">Выйти</Button>
+            <Button x:Name="ProfileButton" Click="ProfileButton_Click" >Профиль</Button>
         </StackPanel>
         
         <Frame x:Name="MainWindowFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="3" Grid.Row="1"></Frame>

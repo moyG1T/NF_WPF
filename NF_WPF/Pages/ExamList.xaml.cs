@@ -23,20 +23,26 @@ namespace NF_WPF.Pages
     public partial class ExamList : Page
     {
         bool isInverted = false;
-        bool AreRemovedShowed = false;
+        bool isRemovedShowed = false;
         public ExamList()
         {
             InitializeComponent();
             SortByComboBox.SelectedIndex = 0;
             BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
-            ExamListView.ItemsSource = ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == false).ToList();
+
+            ShowRemovedAppointsButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+
+            ExamListView.ItemsSource = isRemovedShowed ?
+                App.db.Exam.Where(x => x.IsRemoved == true).ToList()
+                :
+                App.db.Exam.Where(x => x.IsRemoved == false).ToList();
         }
 
         private void RefreshFilters()
         {
-            IEnumerable<Exam> list = AreRemovedShowed ?
+            IEnumerable<Exam> list = isRemovedShowed ?
                 App.db.Exam.Where(x => x.IsRemoved == true).ToList()
-            :
+                :
                 App.db.Exam.Where(x => x.IsRemoved == false).ToList();
 
 
@@ -160,29 +166,28 @@ namespace NF_WPF.Pages
 
         private void ShowRemovedAppoints_Click(object sender, RoutedEventArgs e)
         {
+            isRemovedShowed = !isRemovedShowed;
 
-            AreRemovedShowed = !AreRemovedShowed;
-
-            ExamListView.ItemsSource = AreRemovedShowed ?
+            ExamListView.ItemsSource = isRemovedShowed ?
                 ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == true).ToList()
             :
                 ExamListView.ItemsSource = App.db.Exam.Where(x => x.IsRemoved == false).ToList();
 
-            if (AreRemovedShowed == false)
+            if (isRemovedShowed == true)
             {
                 ShowRemovedText.Text = "Актуальный список";
-                App.mainWindow.TitleText.Text = "Экзамены";
+                App.mainWindow.TitleText.Text = "Удаленные элементы";
             }
             else
             {
                 ShowRemovedText.Text = "Удаленные элементы";
-                App.mainWindow.TitleText.Text = "Удаленные элементы";
+                App.mainWindow.TitleText.Text = "Экзамены";
             }
 
-            AddElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
-            EditElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
-            RemoveElementButton.Visibility = AreRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
-            RestoreElementButton.Visibility = AreRemovedShowed ? Visibility.Visible : Visibility.Collapsed;
+            AddElementButton.Visibility = isRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            EditElementButton.Visibility = isRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            RemoveElementButton.Visibility = isRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
+            RestoreElementButton.Visibility = isRemovedShowed ? Visibility.Visible : Visibility.Collapsed;
         }
 
     }

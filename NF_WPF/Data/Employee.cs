@@ -28,6 +28,8 @@ namespace NF_WPF.Data
         public Nullable<int> Salary { get; set; }
         public Nullable<int> Chef { get; set; }
         public Nullable<int> Exp { get; set; }
+        public string Description { get; set; }
+        public Nullable<bool> IsRemoved { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

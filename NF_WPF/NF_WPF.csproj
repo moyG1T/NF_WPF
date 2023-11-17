@@ -132,6 +132,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EmployeeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ExamList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,7 +148,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MyProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\StudentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserControls\EmployeeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,14 +170,26 @@
     <Compile Include="Pages\EditExam.xaml.cs">
       <DependentUpon>EditExam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditStudent.xaml.cs">
+      <DependentUpon>EditStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeeList.xaml.cs">
+      <DependentUpon>EmployeeList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExamList.xaml.cs">
       <DependentUpon>ExamList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MyProfile.xaml.cs">
+      <DependentUpon>MyProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StudentList.xaml.cs">
       <DependentUpon>StudentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\EmployeeUserControl.xaml.cs">
+      <DependentUpon>EmployeeUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="PartialClasses\Discipline.cs" />
     <Compile Include="PartialClasses\Exam.cs" />
@@ -202,7 +230,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\UserControls\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

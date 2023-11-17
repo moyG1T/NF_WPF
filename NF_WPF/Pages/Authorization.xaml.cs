@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,12 +39,14 @@ namespace NF_WPF.Pages
             else if (App.db.Employee.Where(x => x.Id_emp.ToString() == LoginBox.Text).FirstOrDefault() != null)
             {
                 App.isLecturer = true;
+                App.userId = int.Parse(LoginBox.Text);
                 AppNav.Navigate(new PageComps("Главная", new MainMenu())); 
                 MessageBox.Show("Вы вошли, как сотрудник");
             }
             else if (App.db.Student.Where(x => x.Id_stud.ToString() == LoginBox.Text).FirstOrDefault() != null)
             {
                 App.isStudent = true;
+                App.userId = int.Parse(LoginBox.Text);
                 AppNav.Navigate(new PageComps("Главная", new MainMenu())); 
                 MessageBox.Show("Вы вошли, как студент");
             }

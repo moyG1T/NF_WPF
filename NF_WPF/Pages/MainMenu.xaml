@@ -12,7 +12,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="NavigateToExamsButton" Click="NavigateToExamsButton_Click">Учет экзаменов</Button>
             <Button x:Name="NavigateToStudentsButton" Click="NavigateToStudentsButton_Click">Студенты</Button>
-            <Button>Пока не работает</Button>
+            <Button x:Name="NavigateToEmployeesButton" Click="NavigateToEmployeesButton_Click">Сотрудники</Button>
         </StackPanel>
     </Grid>
 </Page>

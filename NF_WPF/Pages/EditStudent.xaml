@@ -1,0 +1,30 @@
+﻿<Page x:Class="NF_WPF.Pages.EditStudent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NF_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="840" d:DesignWidth="1280"
+      Title="EditStudent">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="2" Width="450" Height="700">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel x:Name="IdPanel" Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left">ID</TextBlock>
+                    <TextBox x:Name ="IdBox" Text="{Binding Path= Id_stud}" HorizontalAlignment="Left" IsReadOnly="True"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left">Специальность</TextBlock>
+                    <ComboBox x:Name ="SpecialityComboBox" Text="{Binding Path= Speciality.SName}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock>Студент</TextBlock>
+                    <TextBox x:Name ="StudentBox" HorizontalAlignment="Left" Text="{Binding Path = Surname}"></TextBox>
+                </StackPanel>
+                <Button x:Name="SaveButton" HorizontalAlignment="Center" Width="200" Margin="0,50,0,0" Click="SaveButton_Click">Сохранить</Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

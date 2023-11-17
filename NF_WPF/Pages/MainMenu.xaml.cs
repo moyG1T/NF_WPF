@@ -35,5 +35,10 @@ namespace NF_WPF.Pages
         {
             AppNav.Navigate(new PageComps("Студенты", new StudentList()));
         }
+
+        private void NavigateToEmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Сотрудники", new EmployeeList()));
+        }
     }
 }

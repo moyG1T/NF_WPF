@@ -11,6 +11,10 @@
     <Grid>
         <Border BorderBrush="Black" BorderThickness="2" Width="450" Height="700">
             <StackPanel Orientation="Vertical">
+                <StackPanel x:Name="IdPanel" Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Left">ID</TextBlock>
+                    <TextBox x:Name ="IdBox" Text="{Binding Path= Id_exam}" HorizontalAlignment="Left" IsReadOnly="True"></TextBox>
+                </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock HorizontalAlignment="Left">Дисциплина</TextBlock>
                     <ComboBox x:Name ="DisciplineComboBox" Text="{Binding Path= Discipline.DName}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>

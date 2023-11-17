@@ -41,6 +41,8 @@ namespace NF_WPF.Pages
 
             AuditoryComboBox.ItemsSource = App.db.ExamAuditory.ToList();
             AuditoryComboBox.DisplayMemberPath = "AName";
+
+            IdPanel.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void PointsText_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -54,7 +56,7 @@ namespace NF_WPF.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isFine = int.TryParse(PointsText.Text, out int number);
+            int.TryParse(PointsText.Text, out int number);
             StringBuilder err = new StringBuilder();
             if (!(number >= 2 && number <= 5))
                 err.AppendLine("Неверная оценка");
@@ -73,10 +75,10 @@ namespace NF_WPF.Pages
                 MessageBox.Show(err.ToString());
             else
             {
-                AppNav.Navigate(new PageComps("Экзамены", new ExamList()));
                 if (exam.Id_exam != 0)
                 {
                     App.db.SaveChanges();
+                    AppNav.Navigate(new PageComps("Экзамены", new ExamList()));
                     MessageBox.Show("Сохранено");
                 }
                 else
@@ -93,9 +95,11 @@ namespace NF_WPF.Pages
                         Id_stud = student.Id_stud,
                         Auditory = examAuditory.AName,
                         Points = int.Parse(PointsText.Text),
-                        EDate = ExamDatePicker.SelectedDate
+                        EDate = ExamDatePicker.SelectedDate,
+                        IsRemoved = false
                     });
                     App.db.SaveChanges();
+                    AppNav.Navigate(new PageComps("Экзамены", new ExamList()));
                     MessageBox.Show("Добавлено");
                 }
             }

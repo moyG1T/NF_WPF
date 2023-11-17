@@ -25,6 +25,7 @@ namespace NF_WPF.Data
         public string Abbreviation { get; set; }
         public string DName { get; set; }
         public Nullable<int> ID_fac { get; set; }
+        public Nullable<bool> IsRemoved { get; set; }
     
         public virtual Faculty Faculty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

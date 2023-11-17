@@ -24,6 +24,7 @@ namespace NF_WPF.Data
         public int Id_spec { get; set; }
         public string SName { get; set; }
         public Nullable<int> Id_dep { get; set; }
+        public Nullable<bool> IsRemoved { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

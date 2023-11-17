@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace NF_WPF.NavHost
 {
@@ -17,9 +18,11 @@ namespace NF_WPF.NavHost
             App.mainWindow.MainWindowFrame.Navigate(page.Page);
             App.mainWindow.TitleText.Text = page.Title;
             App.mainWindow.ModeText.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
-            App.mainWindow.QuitButton.Visibility = App.isAdmin || App.isLecturer || App.isStudent ? Visibility.Visible : Visibility.Collapsed;
-            App.mainWindow.PopButton.Visibility = history.Count >= 3 ? Visibility.Visible : Visibility.Collapsed;
-            //App.mainWindow.QuitButton.Visibility = history.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+            //App.mainWindow.ProfileButton.Visibility = App.isAdmin || App.isLecturer || App.isStudent ? Visibility.Visible : Visibility.Collapsed;
+            //App.mainWindow.QuitButton.Visibility = App.isAdmin || App.isLecturer || App.isStudent ? Visibility.Visible : Visibility.Collapsed;
+            App.mainWindow.ProfileButton.IsEnabled = App.isAdmin || App.isLecturer || App.isStudent ? true : false;
+            App.mainWindow.QuitButton.IsEnabled = App.isAdmin || App.isLecturer || App.isStudent ? true : false;
+            App.mainWindow.PopButton.IsEnabled = history.Count >= 3 ? true : false;
         }
 
         public static void Navigate(PageComps page)
