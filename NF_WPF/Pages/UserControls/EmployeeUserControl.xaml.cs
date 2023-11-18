@@ -1,4 +1,5 @@
 ﻿using NF_WPF.Data;
+using NF_WPF.NavHost;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,19 @@ namespace NF_WPF.Pages.UserControls
     /// </summary>
     public partial class EmployeeUserControl : UserControl
     {
+        private Employee employee;
         public EmployeeUserControl(Employee employee)
         {
             InitializeComponent();
-            DataContext = employee;
+            this.employee = employee;
+            DataContext = this.employee;
 
             SalaryText.Text = $"{employee.Salary}₽";
+            SurnameText.Text = employee.Surname;
 
             if (employee.Exp != null)
             {
-                HeadDepartmentText.Text = "Зав. кафедрой";
+                SurnameText.Text = $"Зав. кафедрой {employee.Surname}";
             }
             else
             {
@@ -39,13 +43,25 @@ namespace NF_WPF.Pages.UserControls
 
             if (employee.Chef == null)
             {
+                SurnameText.Text += " (начальник)";
                 ChefPanel.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ChefText.Text = App.db.Employee.Where(x => x.Id_emp == employee.Chef).FirstOrDefault().Surname.ToString();
-                //ChefText.Text = employee.Chef.ToString();
             }
+        }
+
+        private void EditElement_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Редактирование", new EditEmployee(employee)));
+        }
+
+        private void RemoveElement_Click(object sender, RoutedEventArgs e)
+        {
+            employee.IsRemoved = true;
+            App.db.SaveChanges();
+            MessageBox.Show("Элемент удален. Ждите обновления окна.");
         }
     }
 }

@@ -8,12 +8,11 @@
              d:DesignHeight="250" d:DesignWidth="650">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" Width="600" Height="200" Margin="5">
-            <DockPanel  Width="600" Height="200" Grid.Column="1" Grid.Row="1" Margin="5">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                        <TextBlock x:Name="HeadDepartmentText" FontSize="24"></TextBlock>
-                        <TextBlock x:Name="SurnameText" Text="{Binding Surname}" FontSize="24"></TextBlock>
-                    </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock x:Name="SurnameText" Text="{Binding Surname}" FontSize="24"></TextBlock>
+                </StackPanel>
+                <DockPanel>
                     <StackPanel HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>Кафедра:</TextBlock>
@@ -37,8 +36,12 @@
                             <TextBlock x:Name="ExpText" Text="{Binding Path = Exp}"></TextBlock>
                         </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </DockPanel>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button x:Name="EditElement" Click="EditElement_Click">Редактировать</Button>
+                        <Button x:Name="RemoveElement" Click="RemoveElement_Click">Удалить</Button>
+                    </StackPanel>
+                </DockPanel>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

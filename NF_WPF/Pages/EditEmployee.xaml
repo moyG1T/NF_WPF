@@ -1,0 +1,56 @@
+﻿<Page x:Class="NF_WPF.Pages.EditEmployee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NF_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="840 " d:DesignWidth="1280"
+      Title="EditEmployee">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="2" Width="700" Height="700">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="0,0,50,0">
+                        <StackPanel x:Name="IdPanel" Orientation="Vertical" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left">ID</TextBlock>
+                            <TextBox x:Name ="IdBox" Text="{Binding Path= Id_emp}" HorizontalAlignment="Left" IsReadOnly="True"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Сотрудник</TextBlock>
+                            <TextBox x:Name ="EmplyeeBox" HorizontalAlignment="Left" Text="{Binding Path = Surname}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left">Кафедра</TextBlock>
+                            <ComboBox x:Name ="DepartmentComboBox" Text="{Binding Path= Department.DName}" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Должность</TextBlock>
+                            <ComboBox x:Name ="TitleBox" HorizontalAlignment="Left" Text="{Binding Path = Title.TName}" IsEditable="True"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Звание</TextBlock>
+                            <ComboBox x:Name ="TitleRankBox" HorizontalAlignment="Left" Text="{Binding Path = Title.TitleRank.TRRank}" IsEditable="True"></ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Начальник</TextBlock>
+                            <ComboBox x:Name ="ChefBox" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Стаж</TextBlock>
+                            <TextBox x:Name ="ExpBox" HorizontalAlignment="Left" Text="{Binding Path = Exp}" PreviewTextInput="ExpBox_PreviewTextInput"></TextBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock>Назначить начальником</TextBlock>
+                            <CheckBox Margin="5,0,0,0"></CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="SaveButton" HorizontalAlignment="Center" Width="200" Margin="0,50,0,0">Сохранить</Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

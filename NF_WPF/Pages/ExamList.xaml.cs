@@ -32,10 +32,7 @@ namespace NF_WPF.Pages
 
             ShowRemovedAppointsButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
 
-            ExamListView.ItemsSource = isRemovedShowed ?
-                App.db.Exam.Where(x => x.IsRemoved == true).ToList()
-                :
-                App.db.Exam.Where(x => x.IsRemoved == false).ToList();
+            RefreshFilters();
         }
 
         private void RefreshFilters()

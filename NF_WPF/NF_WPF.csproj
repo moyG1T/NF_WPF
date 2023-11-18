@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -128,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +173,9 @@
     <Compile Include="NavHost\PageComps.cs" />
     <Compile Include="Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditExam.xaml.cs">
       <DependentUpon>EditExam.xaml</DependentUpon>
