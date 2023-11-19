@@ -19,7 +19,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <TextBlock>Сотрудник</TextBlock>
-                            <TextBox x:Name ="EmplyeeBox" HorizontalAlignment="Left" Text="{Binding Path = Surname}"></TextBox>
+                            <TextBox x:Name ="EmployeeBox" HorizontalAlignment="Left" Text="{Binding Path = Surname}"></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                             <TextBlock HorizontalAlignment="Left">Кафедра</TextBlock>
@@ -37,19 +37,23 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Vertical">
                             <TextBlock>Начальник</TextBlock>
-                            <ComboBox x:Name ="ChefBox" HorizontalAlignment="Left" IsEditable="True"></ComboBox>
+                            <ComboBox x:Name ="ChefBox" HorizontalAlignment="Left" IsEditable="True" SelectionChanged="ChefBox_SelectionChanged"></ComboBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock>Назначить начальником</TextBlock>
+                            <CheckBox x:Name="SetChefChecker" Margin="5,0,0,0" IsChecked="False" Checked="SetChefChecker_Checked"></CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <TextBlock>Стаж</TextBlock>
                             <TextBox x:Name ="ExpBox" HorizontalAlignment="Left" Text="{Binding Path = Exp}" PreviewTextInput="ExpBox_PreviewTextInput"></TextBox>
                         </StackPanel>
-                        <StackPanel>
-                            <TextBlock>Назначить начальником</TextBlock>
-                            <CheckBox Margin="5,0,0,0"></CheckBox>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>Зарплата</TextBlock>
+                            <TextBox x:Name ="SalaryBox" HorizontalAlignment="Left" Text="{Binding Path = Salary}" PreviewTextInput="SalaryBox_PreviewTextInput"></TextBox>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <Button x:Name="SaveButton" HorizontalAlignment="Center" Width="200" Margin="0,50,0,0">Сохранить</Button>
+                <Button x:Name="SaveButton" HorizontalAlignment="Center" Width="200" Margin="0,50,0,0" Click="SaveButton_Click">Сохранить</Button>
             </StackPanel>
         </Border>
     </Grid>
