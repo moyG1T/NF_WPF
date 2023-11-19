@@ -17,24 +17,20 @@ namespace NF_WPF.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.Employee1 = new HashSet<Employee>();
             this.Exam = new HashSet<Exam>();
         }
     
         public int Id_emp { get; set; }
         public Nullable<int> Id_dep { get; set; }
         public string Surname { get; set; }
+        public string Description { get; set; }
         public Nullable<int> Id_tit { get; set; }
         public Nullable<int> Salary { get; set; }
         public Nullable<int> Chef { get; set; }
         public Nullable<int> Exp { get; set; }
-        public string Description { get; set; }
         public Nullable<bool> IsRemoved { get; set; }
     
         public virtual Department Department { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee1 { get; set; }
-        public virtual Employee Employee2 { get; set; }
         public virtual Title Title { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }

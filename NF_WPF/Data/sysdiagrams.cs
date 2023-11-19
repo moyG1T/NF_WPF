@@ -12,14 +12,12 @@ namespace NF_WPF.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Request
+    public partial class sysdiagrams
     {
-        public int Id_req { get; set; }
-        public Nullable<int> Id_disc { get; set; }
-        public Nullable<int> Id_spec { get; set; }
-        public Nullable<bool> IsRemoved { get; set; }
-    
-        public virtual Speciality Speciality { get; set; }
-        public virtual Discipline Discipline { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

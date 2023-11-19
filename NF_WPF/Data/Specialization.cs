@@ -12,14 +12,9 @@ namespace NF_WPF.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Request
+    public partial class Specialization
     {
-        public int Id_req { get; set; }
-        public Nullable<int> Id_disc { get; set; }
-        public Nullable<int> Id_spec { get; set; }
-        public Nullable<bool> IsRemoved { get; set; }
-    
-        public virtual Speciality Speciality { get; set; }
-        public virtual Discipline Discipline { get; set; }
+        public int ID { get; set; }
+        public string Name_specialization { get; set; }
     }
 }

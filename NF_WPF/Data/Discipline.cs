@@ -17,19 +17,18 @@ namespace NF_WPF.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Discipline()
         {
-            this.Request = new HashSet<Request>();
             this.Exam = new HashSet<Exam>();
+            this.Request = new HashSet<Request>();
         }
     
         public int Id_disc { get; set; }
         public Nullable<int> Workload { get; set; }
         public string DName { get; set; }
-        public Nullable<int> Id_req { get; set; }
         public Nullable<bool> IsRemoved { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Request> Request { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Exam> Exam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Request { get; set; }
     }
 }

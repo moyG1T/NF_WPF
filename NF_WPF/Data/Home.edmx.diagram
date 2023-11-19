@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db480927f2064fdbade65c63c244d6ec" Name="Diagram1">
+        <EntityTypeShape EntityType="NF_WPFHome.Department" Width="1.5" PointX="1.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Employee" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Exam" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.ExamAuditory" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Faculty" Width="1.5" PointX="1.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Request" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Speciality" Width="1.5" PointX="1.5" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Student" Width="1.5" PointX="0.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.Title" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NF_WPFHome.TitleRank" Width="1.5" PointX="1.5" PointY="24.875" IsExpanded="true" />
+        <AssociationConnector Association="NF_WPFHome.FK_Department_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Speciality_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Employee_Title" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Exam_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Exam_ExamAuditory" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Exam_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Request_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Student_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="NF_WPFHome.FK_Title_TitleRank" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NF_WPFHome.Discipline" Width="1.5" PointX="0.75" PointY="3.25" />
+        <AssociationConnector Association="NF_WPFHome.FK_Exam_Discipline" />
+        <AssociationConnector Association="NF_WPFHome.FK_Request_Discipline" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
