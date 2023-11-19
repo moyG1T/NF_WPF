@@ -145,15 +145,20 @@ namespace NF_WPF.Pages
             if (ExamListView.SelectedItem != null)
                 AppNav.Navigate(new PageComps("Редактирование", new EditExam(ExamListView.SelectedItem as Exam)));
             else
-                MessageBox.Show("Выберите элемент");
+                MessageBox.Show("Элемент не выбран");
         }
 
 
         private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
         {
-            (ExamListView.SelectedItem as Exam).IsRemoved = true;
-            App.db.SaveChanges();
-            RefreshFilters();
+            if (ExamListView.SelectedItem != null)
+            {
+                (ExamListView.SelectedItem as Exam).IsRemoved = true;
+                App.db.SaveChanges();
+                RefreshFilters();
+            }
+            else
+                MessageBox.Show("Элемент не выбран");
         }
         private void RestoreElementButton_Click(object sender, RoutedEventArgs e)
         {
@@ -166,7 +171,7 @@ namespace NF_WPF.Pages
         {
             isRemovedShowed = !isRemovedShowed;
 
-            RefreshFilters();  
+            RefreshFilters();
 
             if (isRemovedShowed == true)
             {

@@ -57,7 +57,7 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                 <TextBlock HorizontalAlignment="Left">Элемент</TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="GetElementInfoButton">Узнать больше</Button>
+                    <Button x:Name="GetElementInfoButton" Click="GetElementInfoButton_Click">Узнать больше</Button>
                     <Button x:Name="AddElementButton" Click="AddElementButton_Click">Добавить</Button>
                     <Button x:Name="EditElementButton" Click="EditElementButton_Click">Редактировать</Button>
                     <Button x:Name="RemoveElementButton" Click="RemoveElementButton_Click">Удалить</Button>

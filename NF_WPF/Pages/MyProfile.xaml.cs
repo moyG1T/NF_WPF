@@ -24,12 +24,13 @@ namespace NF_WPF.Pages
         {
             InitializeComponent();
             UserIdBox.Text = App.userId.ToString();
-            
+
             if (App.isStudent)
             {
                 NameBox.Text = App.db.Student.Where(x => x.Id_stud == App.userId).FirstOrDefault().Surname.ToString();
                 TitleText.Text = "Моя специальность";
                 TitleBox.Text = App.db.Student.Where(x => x.Id_stud == App.userId).FirstOrDefault().Speciality.SName.ToString();
+                DescriptionBox.Text = App.db.Student.Where(x => x.Id_stud == App.userId).FirstOrDefault().Description.ToString();
             }
             else if (App.isLecturer)
             {
@@ -37,13 +38,34 @@ namespace NF_WPF.Pages
                 TitleText.Text = "Моя должность";
                 TitleBox.Text = $"{App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Title.TName}" +
                     $" {App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Title.TitleRank.TRRank}";
+                DescriptionBox.Text = App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Description.ToString();
             }
             else
             {
+                NameBox.Text = "1337AdminServera228";
                 UserIdBox.Text = "1337AdminServera228";
                 DescriptionBox.Text = "Я админ сервера";
                 TitlePanel.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.isStudent)
+            {
+                App.db.Student.Where(x => x.Id_stud == App.userId).FirstOrDefault().Description = DescriptionBox.Text;
+                MessageBox.Show("Сохранено");
+            }
+            else if (App.isLecturer)
+            {
+                App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Description = DescriptionBox.Text;
+                MessageBox.Show("Сохранено");
+            }
+            else
+            {
+                MessageBox.Show("Сохранение невозможно");
+            }
+            App.db.SaveChanges();
         }
     }
 }

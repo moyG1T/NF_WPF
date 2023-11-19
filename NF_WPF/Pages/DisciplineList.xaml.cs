@@ -123,14 +123,22 @@ namespace NF_WPF.Pages
 
         private void EditElementButton_Click(object sender, RoutedEventArgs e)
         {
-            AppNav.Navigate(new PageComps("Редактирование", new EditDiscipline(DisciplineListView.SelectedItem as Discipline)));
+            if (DisciplineListView.SelectedItem != null)
+                AppNav.Navigate(new PageComps("Редактирование", new EditDiscipline(DisciplineListView.SelectedItem as Discipline)));
+            else
+                MessageBox.Show("Элемент не выбран");
         }
 
         private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
         {
-            (DisciplineListView.SelectedItem as Discipline).IsRemoved = true;
-            App.db.SaveChanges();
-            RefreshFilters();
+            if (DisciplineListView.SelectedItem != null)
+            {
+                (DisciplineListView.SelectedItem as Discipline).IsRemoved = true;
+                App.db.SaveChanges();
+                RefreshFilters();
+            }
+            else
+                MessageBox.Show("Элемент не выбран");
         }
 
         private void RestoreElementButton_Click(object sender, RoutedEventArgs e)

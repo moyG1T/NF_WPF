@@ -27,6 +27,7 @@
                 <TextBox x:Name="TitleBox" IsReadOnly="True"></TextBox>
             </StackPanel>
             
+                <Button x:Name="SaveButton" HorizontalAlignment="Stretch" Content="Сохранить" Click="SaveButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -121,12 +121,6 @@ namespace NF_WPF.Pages
             RefreshFilters();
         }
 
-        private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
-        {
-            (StudentListView.SelectedItem as Student).IsRemoved = true;
-            App.db.SaveChanges();
-            RefreshFilters();
-        }
 
         private void ShowRemovedAppointsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -178,7 +172,30 @@ namespace NF_WPF.Pages
 
         private void EditElementButton_Click(object sender, RoutedEventArgs e)
         {
-            AppNav.Navigate(new PageComps("Редактирование", new EditStudent(StudentListView.SelectedItem as Student)));
+            if (StudentListView.SelectedItem != null)
+                AppNav.Navigate(new PageComps("Редактирование", new EditStudent(StudentListView.SelectedItem as Student)));
+            else
+                MessageBox.Show("Элемент не выбран");
+        }
+
+        private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StudentListView.SelectedItem != null)
+            {
+                (StudentListView.SelectedItem as Student).IsRemoved = true;
+                App.db.SaveChanges();
+                RefreshFilters();
+            }
+            else
+                MessageBox.Show("Элемент не выбран");
+        }
+
+        private void GetElementInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StudentListView.SelectedItem != null)
+                AppNav.Navigate(new PageComps("QR-code", new QRCodeCreator(StudentListView.SelectedItem as Student)));
+            else
+                MessageBox.Show("Элемент не выбран");
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using NF_WPF.Data;
 
 namespace NF_WPF.Pages
 {
@@ -22,19 +23,23 @@ namespace NF_WPF.Pages
     /// </summary>
     public partial class QRCodeCreator : Page
     {
-        public QRCodeCreator()
+        private Student student;
+        public QRCodeCreator(Student student)
         {
             InitializeComponent();
+            this.student = student;
         }
 
         private void CreateQRButton_Click(object sender, RoutedEventArgs e)
         {
-            string soucer_xl = "Вставьте ссылку на Google таблицу";
+            string source = student.Surname;
 
             QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
-            QRCoder.QRCodeData data = qr.CreateQrCode(soucer_xl, QRCoder.QRCodeGenerator.ECCLevel.L);
+            QRCoder.QRCodeData data = qr.CreateQrCode(source, QRCoder.QRCodeGenerator.ECCLevel.L);
             QRCoder.QRCode code = new QRCoder.QRCode(data);
+
             Bitmap bitmap = code.GetGraphic(100);
+
             using (MemoryStream memory = new MemoryStream())
             {
                 bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
@@ -47,5 +52,6 @@ namespace NF_WPF.Pages
                 QRCodeImage.Source = bitmapimage;
             }
         }
+
     }
 }
