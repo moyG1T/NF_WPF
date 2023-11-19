@@ -29,6 +29,8 @@ namespace NF_WPF.Pages
             this.student = student;
             DataContext = this.student;
 
+            IdPanel.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+
             SpecialityComboBox.ItemsSource = App.db.Speciality.ToList();
             SpecialityComboBox.DisplayMemberPath = "SName";
         }

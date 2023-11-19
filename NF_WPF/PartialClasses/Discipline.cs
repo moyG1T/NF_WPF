@@ -8,5 +8,13 @@ namespace NF_WPF.Data
 {
     public partial class Discipline
     {
+        public int SpecialityCount
+        {
+            get
+            {
+                return Request.Count;
+            }
+
+        }
     }
 }

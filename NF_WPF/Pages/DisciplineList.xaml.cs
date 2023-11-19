@@ -18,100 +18,75 @@ using System.Windows.Shapes;
 namespace NF_WPF.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ExamList.xaml
+    /// Логика взаимодействия для DisciplineList.xaml
     /// </summary>
-    public partial class ExamList : Page
+    public partial class DisciplineList : Page
     {
         bool isInverted = false;
         bool isRemovedShowed = false;
-        public ExamList()
+        public DisciplineList()
         {
             InitializeComponent();
-            SortByComboBox.SelectedIndex = 0;
-            BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
 
-            ShowRemovedAppointsButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
-            RemoveElementButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+            SortByComboBox.SelectedIndex = 0;
+
+            BottomBar.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
 
             RefreshFilters();
         }
 
         private void RefreshFilters()
         {
-            IEnumerable<Exam> list = isRemovedShowed ?
-                App.db.Exam.Where(x => x.IsRemoved == true).ToList()
+            IEnumerable<Discipline> list = isRemovedShowed ?
+                App.db.Discipline.Where(x => x.IsRemoved == true).ToList()
                 :
-                App.db.Exam.Where(x => x.IsRemoved == false).ToList();
+                App.db.Discipline.Where(x => x.IsRemoved == false).ToList();
 
 
             if (isInverted == false && SortByComboBox.SelectedIndex != 0)
                 switch (SortByComboBox.SelectedIndex)
                 {
                     case 1:
-                        list = list.OrderBy(x => x.Discipline.DName).ToList();
+                        list = list.OrderBy(x => x.DName).ToList();
                         break;
                     case 2:
-                        list = list.OrderBy(x => x.Employee.Surname).ToList();
+                        list = list.OrderBy(x => x.Workload).ToList();
                         break;
                     case 3:
-                        list = list.OrderBy(x => x.Student.Surname).ToList();
-                        break;
-                    case 4:
-                        list = list.OrderBy(x => x.EDate).ToList();
-                        break;
-                    case 5:
-                        list = list.OrderBy(x => x.Auditory).ToList();
-                        break;
-                    case 6:
-                        list = list.OrderBy(x => x.Points).ToList();
+                        list = list.OrderBy(x => x.SpecialityCount).ToList();
                         break;
                 }
             else if (isInverted == true && SortByComboBox.SelectedIndex != 0)
                 switch (SortByComboBox.SelectedIndex)
                 {
                     case 1:
-                        list = list.OrderByDescending(x => x.Discipline.DName).ToList();
+                        list = list.OrderByDescending(x => x.DName).ToList();
                         break;
                     case 2:
-                        list = list.OrderByDescending(x => x.Employee.Surname).ToList();
+                        list = list.OrderByDescending(x => x.Workload).ToList();
                         break;
                     case 3:
-                        list = list.OrderByDescending(x => x.Student.Surname).ToList();
-                        break;
-                    case 4:
-                        list = list.OrderByDescending(x => x.EDate).ToList();
-                        break;
-                    case 5:
-                        list = list.OrderByDescending(x => x.Auditory).ToList();
-                        break;
-                    case 6:
-                        list = list.OrderByDescending(x => x.Points).ToList();
+                        list = list.OrderByDescending(x => x.SpecialityCount).ToList();
                         break;
                 }
 
             if (SearchbarText.Text != "")
                 list = list.Where(x =>
-                x.Discipline.DName.ToLower().Contains(SearchbarText.Text.ToLower()) ||
-                x.Employee.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
-                x.Student.Surname.ToLower().Contains(SearchbarText.Text.ToLower()) ||
-                x.Auditory.ToLower().Contains(SearchbarText.Text.ToLower()) ||
-                x.Points.ToString().ToLower().Contains(SearchbarText.Text.ToLower())
+                x.DName.ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.Workload.ToString().ToLower().Contains(SearchbarText.Text.ToLower()) ||
+                x.SpecialityCount.ToString().ToLower().Contains(SearchbarText.Text.ToLower())
                 ).ToList();
 
-            ExamListView.ItemsSource = null;
-            ExamListView.ItemsSource = list;
+            DisciplineListView.ItemsSource = null;
+            DisciplineListView.ItemsSource = list;
 
             InvertSortByButton.Visibility = SortByComboBox.SelectedIndex == 0 ? Visibility.Collapsed : Visibility.Visible;
             ClearSearchbarButton.Visibility = SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
             ClearFiltersButton.Visibility = SortByComboBox.SelectedIndex == 0 && SearchbarText.Text == "" ? Visibility.Collapsed : Visibility.Visible;
+
         }
 
         private void SortByComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            RefreshFilters();
-        }
-
-        private void SearchbarText_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshFilters();
         }
@@ -122,11 +97,8 @@ namespace NF_WPF.Pages
             RefreshFilters();
         }
 
-        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        private void SearchbarText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            isInverted = false;
-            SortByComboBox.SelectedIndex = 0;
-            SearchbarText.Text = "";
             RefreshFilters();
         }
 
@@ -135,38 +107,45 @@ namespace NF_WPF.Pages
             SearchbarText.Text = "";
             RefreshFilters();
         }
+
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            isInverted = false;
+            SearchbarText.Text = "";
+            SortByComboBox.SelectedIndex = 0;
+            RefreshFilters();
+        }
+
         private void AddElementButton_Click(object sender, RoutedEventArgs e)
         {
-            AppNav.Navigate(new PageComps("Добавление", new EditExam(new Exam())));
+            AppNav.Navigate(new PageComps("Добавление", new EditDiscipline(new Discipline())));
         }
 
         private void EditElementButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ExamListView.SelectedItem != null)
-                AppNav.Navigate(new PageComps("Редактирование", new EditExam(ExamListView.SelectedItem as Exam)));
-            else
-                MessageBox.Show("Выберите элемент");
+            AppNav.Navigate(new PageComps("Редактирование", new EditDiscipline(DisciplineListView.SelectedItem as Discipline)));
         }
-
 
         private void RemoveElementButton_Click(object sender, RoutedEventArgs e)
         {
-            (ExamListView.SelectedItem as Exam).IsRemoved = true;
+            (DisciplineListView.SelectedItem as Discipline).IsRemoved = true;
             App.db.SaveChanges();
             RefreshFilters();
         }
+
         private void RestoreElementButton_Click(object sender, RoutedEventArgs e)
         {
-            (ExamListView.SelectedItem as Exam).IsRemoved = false;
+            (DisciplineListView.SelectedItem as Discipline).IsRemoved = false;
             App.db.SaveChanges();
             RefreshFilters();
         }
 
         private void ShowRemovedAppoints_Click(object sender, RoutedEventArgs e)
         {
+
             isRemovedShowed = !isRemovedShowed;
 
-            RefreshFilters();  
+            RefreshFilters();
 
             if (isRemovedShowed == true)
             {
@@ -176,7 +155,7 @@ namespace NF_WPF.Pages
             else
             {
                 ShowRemovedText.Text = "Удаленные элементы";
-                App.mainWindow.TitleText.Text = "Экзамены";
+                App.mainWindow.TitleText.Text = "Дисциплины";
             }
 
             AddElementButton.Visibility = isRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
@@ -184,6 +163,5 @@ namespace NF_WPF.Pages
             RemoveElementButton.Visibility = isRemovedShowed ? Visibility.Collapsed : Visibility.Visible;
             RestoreElementButton.Visibility = isRemovedShowed ? Visibility.Visible : Visibility.Collapsed;
         }
-
     }
 }

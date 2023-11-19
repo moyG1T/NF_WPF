@@ -12,7 +12,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                     <TextBlock x:Name="SurnameText" Text="{Binding Surname}" FontSize="24"></TextBlock>
                 </StackPanel>
-                <DockPanel>
+                <DockPanel VerticalAlignment="Stretch">
                     <StackPanel HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>Кафедра:</TextBlock>
@@ -23,7 +23,7 @@
                             <TextBlock x:Name="TitleText" Text="{Binding Path = Title.TName}"></TextBlock>
                             <TextBlock x:Name="TitleRankText" Text="{Binding Path = Title.TitleRank.TRRank}"></TextBlock>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel x:Name="SalaryPanel" Orientation="Horizontal">
                             <TextBlock>Зарплата:</TextBlock>
                             <TextBlock x:Name="SalaryText"></TextBlock>
                         </StackPanel>
@@ -36,7 +36,7 @@
                             <TextBlock x:Name="ExpText" Text="{Binding Path = Exp}"></TextBlock>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <StackPanel x:Name="EditPanel" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                         <Button x:Name="EditElement" Click="EditElement_Click">Редактировать</Button>
                         <Button x:Name="RemoveElement" Click="RemoveElement_Click">Удалить</Button>
                     </StackPanel>

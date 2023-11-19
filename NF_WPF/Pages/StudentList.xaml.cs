@@ -31,6 +31,8 @@ namespace NF_WPF.Pages
             BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
 
             ShowRemovedAppointsButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+            AddElementButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+            RemoveElementButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
 
             StudentListView.ItemsSource = App.isStudent ?
                 App.db.Student.Where(x => x.Speciality.Student.FirstOrDefault().Id_stud == App.userId && x.IsRemoved == false).ToList()

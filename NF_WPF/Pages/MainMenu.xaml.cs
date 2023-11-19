@@ -40,5 +40,10 @@ namespace NF_WPF.Pages
         {
             AppNav.Navigate(new PageComps("Сотрудники", new EmployeeList()));
         }
+
+        private void NavigateToDisciplinesButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppNav.Navigate(new PageComps("Дисциплины", new DisciplineList()));
+        }
     }
 }

@@ -33,9 +33,7 @@ namespace NF_WPF.Pages
             InitializeComponent();
 
             SortByComboBox.SelectedIndex = 0;
-            BottomBar.Visibility = App.isAdmin || App.isLecturer ? Visibility.Visible : Visibility.Collapsed;
-
-            ShowRemovedAppointsButton.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+            BottomBar.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(15);

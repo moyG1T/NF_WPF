@@ -29,6 +29,9 @@ namespace NF_WPF.Pages.UserControls
             this.employee = employee;
             DataContext = this.employee;
 
+            EditPanel.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+            SalaryPanel.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
+
             SalaryText.Text = $"{employee.Salary}₽";
             SurnameText.Text = employee.Surname;
 

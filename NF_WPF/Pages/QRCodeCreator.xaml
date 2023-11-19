@@ -1,0 +1,19 @@
+﻿<Page x:Class="NF_WPF.Pages.QRCodeCreator"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NF_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="840" d:DesignWidth="1280"
+      Title="QRCodeCreator">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border BorderBrush="Black" BorderThickness="1" Width="500" Height="500">
+                <Image x:Name ="QRCodeImage" Width="500" Height="500"></Image>
+            </Border>
+            <Button x:Name ="CreateQRButton" HorizontalAlignment="Stretch" Click="CreateQRButton_Click">Создать QR-код</Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -13,6 +13,7 @@
             <Button x:Name="NavigateToExamsButton" Click="NavigateToExamsButton_Click">Учет экзаменов</Button>
             <Button x:Name="NavigateToStudentsButton" Click="NavigateToStudentsButton_Click">Студенты</Button>
             <Button x:Name="NavigateToEmployeesButton" Click="NavigateToEmployeesButton_Click">Сотрудники</Button>
+            <Button x:Name="NavigateToDisciplinesButton" Click="NavigateToDisciplinesButton_Click">Дисциплины</Button>
         </StackPanel>
     </Grid>
 </Page>
