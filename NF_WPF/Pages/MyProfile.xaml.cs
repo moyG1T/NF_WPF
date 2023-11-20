@@ -40,13 +40,14 @@ namespace NF_WPF.Pages
                     $" {App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Title.TitleRank.TRRank}";
                 DescriptionBox.Text = App.db.Employee.Where(x => x.Id_emp == App.userId).FirstOrDefault().Description.ToString();
             }
-            else
-            {
-                NameBox.Text = "1337AdminServera228";
-                UserIdBox.Text = "1337AdminServera228";
-                DescriptionBox.Text = "Я админ сервера";
-                TitlePanel.Visibility = Visibility.Collapsed;
-            }
+
+            //else
+            //{
+            //    NameBox.Text = "1337AdminServera228";
+            //    UserIdBox.Text = "1337AdminServera228";
+            //    DescriptionBox.Text = "Я админ сервера";
+            //    TitlePanel.Visibility = Visibility.Collapsed;
+            //}
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

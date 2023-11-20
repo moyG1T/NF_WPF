@@ -34,7 +34,7 @@ namespace NF_WPF.Pages
             {
                 App.isAdmin = true;
                 AppNav.Navigate(new PageComps("Главная", new MainMenu()));
-                MessageBox.Show("Вы вошли, как\nАДМИН 1337 СЕРВЕРА 228 АХАХАХ\nНАГИБАТЕЛЬ СТУДЕНЧЕСКИХ ЖОП И НЕ ТОЛЬКО");
+                MessageBox.Show("Вы вошли, как администратор");
             }
             else if (App.db.Employee.Where(x => x.Id_emp.ToString() == LoginBox.Text).FirstOrDefault() != null)
             {

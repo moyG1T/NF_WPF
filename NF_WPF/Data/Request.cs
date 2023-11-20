@@ -19,7 +19,7 @@ namespace NF_WPF.Data
         public Nullable<int> Id_spec { get; set; }
         public Nullable<bool> IsRemoved { get; set; }
     
-        public virtual Speciality Speciality { get; set; }
         public virtual Discipline Discipline { get; set; }
+        public virtual Speciality Speciality { get; set; }
     }
 }

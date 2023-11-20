@@ -23,9 +23,9 @@ namespace NF_WPF.Data
         public Nullable<int> Points { get; set; }
         public Nullable<bool> IsRemoved { get; set; }
     
+        public virtual Discipline Discipline { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ExamAuditory ExamAuditory { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Discipline Discipline { get; set; }
     }
 }

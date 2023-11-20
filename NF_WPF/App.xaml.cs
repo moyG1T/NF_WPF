@@ -15,7 +15,8 @@ namespace NF_WPF
     public partial class App : Application
     {
         //public static NF_WPF_Entities db = new NF_WPF_Entities();
-        public static HomeEntities db = new HomeEntities();
+        //public static HomeEntities db = new HomeEntities();
+        public static NF_WPF_PC2_Entities db = new NF_WPF_PC2_Entities();
         public static bool isAdmin = false;
         public static bool isLecturer = false;
         public static bool isStudent = false;

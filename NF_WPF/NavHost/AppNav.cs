@@ -20,7 +20,8 @@ namespace NF_WPF.NavHost
             App.mainWindow.ModeText.Visibility = App.isAdmin ? Visibility.Visible : Visibility.Collapsed;
             //App.mainWindow.ProfileButton.Visibility = App.isAdmin || App.isLecturer || App.isStudent ? Visibility.Visible : Visibility.Collapsed;
             //App.mainWindow.QuitButton.Visibility = App.isAdmin || App.isLecturer || App.isStudent ? Visibility.Visible : Visibility.Collapsed;
-            App.mainWindow.ProfileButton.IsEnabled = App.isAdmin || App.isLecturer || App.isStudent ? true : false;
+            App.mainWindow.ProfileButton.IsEnabled = false;
+            App.mainWindow.ProfileButton.IsEnabled = App.isLecturer || App.isStudent ? true : false;
             App.mainWindow.QuitButton.IsEnabled = App.isAdmin || App.isLecturer || App.isStudent ? true : false;
             App.mainWindow.PopButton.IsEnabled = history.Count >= 3 ? true : false;
         }
